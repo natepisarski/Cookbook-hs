@@ -1,0 +1,28 @@
+Cookbook is a Haskell library used in a load of personal projects.
+I know that Cookbook redefines some functions that can be found in Data.List or even Prelude. I know that Cookbook features code that could take advantage of abstractiosn it doesn't to make it MUCH cleaner. I don't particularly care. Cookbook is here to get the projects I want to work up and running as quickly as possible.
+
+Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
+
+|cookbook
+|^common -- A copy of the most commonly used functions and their dependencies.
+|^continuous -- A typeclass for overloaded functions.
+||Recipes
+|||^resource -- A simple language for getting information from files.
+|||^sanitize -- A collection of sanitization libraries, to make input suitable.
+||Ingredients
+|||Lists
+||||^access -- Functions for accessing and clarifying lists.
+||||^modify -- Modify lists
+|||Functional
+||||^break -- Different breaks (filterBreak, removeBreak)
+|||Tupples
+||||^general -- Look, tsort
+
+Cookbook is meant to have very short definitions. The general form for a cookbook function entry is
+
+--Function Purpose comment
+--Usage Example
+Function Definition
+
+Main.hs imports all of the libraries to make sure everything compiles and cooperates in one go.
+The makefile will simply run ghc --make on Main.hs
