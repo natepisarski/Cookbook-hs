@@ -26,3 +26,5 @@ Function Definition
 
 Main.hs imports all of the libraries to make sure everything compiles and cooperates in one go.
 The makefile will simply run ghc --make on Main.hs
+
+In order to be able to compile the libraries, the entire contents of this repository must be put in their own directory, called "Cookbook". This is encouraged to separate these libraries from any others included in the project.

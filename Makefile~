@@ -1,0 +1,3 @@
+all: 
+	ghc --make Main.hs
+	./clean
