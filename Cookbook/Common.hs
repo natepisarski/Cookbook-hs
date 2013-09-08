@@ -22,7 +22,7 @@ positions x c = let y = zip x [0..(length x)] in find y
 -- | Interface to position for finding the position of the first occurence in a list.
 pos :: (Eq a) => [a] -> a -> Int
 pos x c | c `notElem` x = -1
-pos x c = let ans = positions x c in (if (length ans) > 1 then (head . tail) else head) ans
+pos x c = let ans = positions x c in ((if (length ans) > 1 then (head . tail) else head) ans)
           
 
 
