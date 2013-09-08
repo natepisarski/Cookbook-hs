@@ -1,0 +1,9 @@
+module Cookbook.IO(filelines) where
+import System.IO
+import System.Environment
+
+filelines :: String -> IO ([String])
+filelines x = do
+  y <- openFile x ReadMode
+  yc <- hGetContents y
+  return (lines yc)
