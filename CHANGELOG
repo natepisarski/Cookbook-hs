@@ -1,3 +1,7 @@
 2013-09-09  Nate Pisarski  <nathanpisarski@gmail.com>
 
     * Replace.hs (Replacable): Overloaded both parameters to handle lists.
+
+2013-09-10 Nate Pisarski <nathanpisarski@gmail.com>
+	* Continuous.hs (Continuous): Added an overloaded delete interface.
+        * Modify.hs (Insert): Made snipe work on lists, now called insert. Overloaded typeclass?

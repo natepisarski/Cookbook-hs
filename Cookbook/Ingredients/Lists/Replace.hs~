@@ -1,4 +1,0 @@
-module Cookbook.Ingredients.Lists.Replace(repl) where
-
-repl :: (Eq a) => [a] -> (a,a) -> [a]
-repl x (a,b)  = [if y == a then b else y | y <- x] 
