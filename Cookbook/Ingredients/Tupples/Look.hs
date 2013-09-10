@@ -1,4 +1,4 @@
-module Cookbook.Ingredients.Tupples.Look(look,looklist,swp) where
+module Cookbook.Ingredients.Tupples.Look(look,lookList,swp) where
 
 -- | Returns the second element of the first tupple where the first element matches input.
 look :: (Eq a) => [(a,b)] -> a -> (Maybe b)

@@ -1,4 +1,4 @@
-module Cookbook.Common(sub,positions,pos) where
+module Cookbook.Common(sub,positions,pos,apply) where
 
 --Cut a list off at a certain point
 --sub [1,2,3] 1 -> [2 3]
@@ -23,6 +23,11 @@ positions x c = let y = zip x [0..(length x)] in find y
 pos :: (Eq a) => [a] -> a -> Int
 pos x c | c `notElem` x = -1
 pos x c = let ans = positions x c in ((if (length ans) > 1 then (head . tail) else head) ans)
-          
+
+--Apply a list of functions to one value.
+-- | Apply a list of functiosn to one value, using the result from the function beforehand.
+apply :: [(a -> a)] -> a -> a
+apply [] c = c
+apply (f:fs) c = apply fs (f c)
 
 

@@ -1,0 +1,3 @@
+2013-09-09  Nate Pisarski  <nathanpisarski@gmail.com>
+
+    * Replace.hs (Replacable): Overloaded both parameters to handle lists.

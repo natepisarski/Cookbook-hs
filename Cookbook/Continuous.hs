@@ -16,8 +16,8 @@ class Continuous list part where
   before :: list -> part -> list
   
 instance (Eq a) => Continuous [a] a where
-  after x c = tail $ removeBreak (/=c) x
-  before x c = filterBreak (/=c) x
+  after x c     = tail $ removeBreak (/=c) x
+  before x c  = filterBreak (/=c) x
   
 instance (Eq a) => Continuous [a] [a] where
   after [] _ = []
