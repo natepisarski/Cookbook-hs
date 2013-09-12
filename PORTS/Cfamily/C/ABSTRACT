@@ -1,0 +1,5 @@
+This is an implementation of a functional library in an imperitive language. If you haven't guessed, there is a lot of unsafe stuff going on here. Does it compile? Yeah, with -std=c99, because I'm lazy. But there are no gaurauntees that it will work. It worked on the input that I gave it, but because of the differences between functional and imperitive paradigms it can be hard to actaully get this thing off the ground.
+
+Some functions have been moved, some have been ommitted. Some important list functions are gone because of how C-arrays work. They may be added in the future, but it will take a lot of infrastructure to implement them.
+
+Generics were attemptedly (attemptedly?) added by requiring pointers for everything, so prepare yourself for the stack overflows.

@@ -7,6 +7,9 @@ One of the features of the Cookbook library can be considered a hack or pointles
 Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 
 |cookbook
+|PORTS
+||Lisp
+||Cfamily
 |^Common -- A copy of the most commonly used functions, depends on nothing.
 |^Continuous -- A typeclass for overloaded functions.
 ||Recipes
@@ -29,3 +32,5 @@ Cookbook is meant to have very short definitions. The general form for a cookboo
 Function Definition
 
 To install Cookbook, you can either run "runhaskell Setup.hs configure && runhaskell Setup.hs build" and run "cabal install" on the resulting package. The library is also available on hackage under the name "cookbook", so "cabal install cookbook" regardless of what directory it's in will download and install it properly.
+
+Cookbook ports are planned for many other functional languages. Currently Lisp and experimental C ports exists. Scala will likely receive a port within the year.
