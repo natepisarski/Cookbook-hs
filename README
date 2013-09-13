@@ -15,6 +15,7 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 ||Recipes
 |||^Diffstat -- Diff and Patch implementation.
 |||^Configuration -- Tool for interacting with simple configuration files.
+|||^Sanitize -- All sorts of utilities for kicking list's butts, when you need to.
 ||Ingredients
 |||Lists
 ||||^Access -- Functions for accessing and clarifying lists.

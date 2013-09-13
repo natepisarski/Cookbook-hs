@@ -1,4 +1,4 @@
-module Cookbook.IO(filelines) where
+module Cookbook.IO(filelines,prompt) where
 import System.IO
 import System.Environment
 
@@ -8,3 +8,10 @@ filelines x = do
   y <- openFile x ReadMode
   yc <- hGetContents y
   return (lines yc)
+
+-- | Prompts the user for a string
+prompt :: String -> IO (String)
+prompt x = do
+    putStr x
+    hFlush stdout
+    getLine

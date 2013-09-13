@@ -1,5 +1,5 @@
 module Cookbook.Ingredients.Lists.Access(
-count,contains,qsort) where
+count,contains,qsort,pull,refpos) where
 
 import qualified Cookbook.Ingredients.Functional.Break as Br
 
@@ -24,3 +24,13 @@ qsort (x:xs) = lessT ++ [x] ++ greatT
   where
     lessT  = qsort [y | y <- xs, y <= x]
     greatT = qsort [y | y <- xs, y > x]
+
+-- | Safe !!
+pull :: [a] -> Int -> Maybe a
+pull _ (-1) = Nothing
+pull [] _  = Nothing
+pull (x:xs) c = if c == 0 then (Just x) else pull xs (c - 1)
+
+-- | Reference an element from one list to another.
+refpos :: (Eq a) => ([a],[a]) -> a -> a
+refpos (a,b) c = let d = (pull b (Cm.pos a c)) in case d of (Just x) -> x;(Nothing) -> c
