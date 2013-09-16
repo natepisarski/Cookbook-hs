@@ -27,9 +27,11 @@ strpex x = toRepex [(['a'..'z'],'@'),(['A'..'Z'],'!'),(['0'..'9'],'#'),([':'..'@
 strmatch :: String -> String -> Bool
 strmatch x c = (strpex x) `contains` c
 
+-- | All lines containing this pattern
 containingPattern :: [String] -> String -> [String]
 containingPattern x c = filter (flip strmatch c) x
 
+-- | All patterns matching the pattern
 withPattern :: [String] -> String -> [String]
 withPattern [] _ = []
 withPattern a@(x:xs) c
