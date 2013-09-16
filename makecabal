@@ -1,0 +1,8 @@
+#/bin/bash
+rm -rf ./dist/
+./clean
+runhaskell ./Setup.hs configure
+runhaskell ./Setup.hs build
+rm -rf ./dist/
+runhaskell ./Setup.hs configure
+runhaskell ./Setup.hs sdist

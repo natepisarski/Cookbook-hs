@@ -1,4 +1,4 @@
-module Cookbook.Common(sub,positions,pos,apply) where
+module Cookbook.Common(sub,positions,pos,apply,flt) where
 
 --Cut a list off at a certain point
 --sub [1,2,3] 1 -> [2 3]
@@ -29,5 +29,10 @@ pos x c = let ans = positions x c in ((if (length ans) > 1 then (head . tail) el
 apply :: [(a -> a)] -> a -> a
 apply [] c = c
 apply (f:fs) c = apply fs (f c)
+
+-- | Flatten a list one level.
+flt :: [[a]] -> [a]
+flt [] = []
+flt (x:xs) = x ++ flt xs
 
 
