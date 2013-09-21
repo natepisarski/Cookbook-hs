@@ -47,7 +47,7 @@ cabal-version:       >=1.8
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Cookbook.Common, Cookbook.Continuous, Cookbook.IO, Cookbook.Recipes.DiffStat, Cookbook.Recipes.Configuration, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Tupples.Look
+  exposed-modules:     Cookbook.Common, Cookbook.Continuous, Cookbook.IO, Cookbook.Recipes.DiffStat, Cookbook.Recipes.Configuration, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Tupples.Look, Cookbook.Recipes.Detect, Cookbook.Recipes.Groups, Cookbook.Recipes.Sanitize
   
   -- Modules included in this library but not exported.
   -- other-modules:       
