@@ -1,6 +1,6 @@
 Cookbook is a Haskell library used in a load of personal projects.
 
-Cookbook is an addition to the functionallity found in Prelude. It redefines some of the functions found in the Haskell standard library, but this is part of the reason why the library exists. With the exception of Monadic interfaces (IO, Process, Environment, etc), no standard library functions are used or even important. These libraries are completely standalone, and exist as dependencies to other cookbook files. 
+Cookbook is an addition to the functionallity found in Prelude. It redefines some of the functions found in the Haskell standard library, but this is part of the reason why the library exists. With the exception of Monadic interfaces (IO, Process, Environment, etc), no standard library functions are used or even imported. These libraries are completely standalone, and exist as dependencies to other cookbook files. 
 
 One of the features of the Cookbook library can be considered a hack or pointless, but it's useful. Overloaded typeclasses are used to make incredibly generic functions. Soon every similar function (e.g, snipe and insert) will be available under generic typeclasses, that work on generics themselves. For instance, (after "norton" 't') and (after "norton" "or") are both valid statements, and to use the function "(Eq a)" is the only required restraint.
 
@@ -16,6 +16,7 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 |||^Diffstat -- Diff and Patch implementation.
 |||^Configuration -- Tool for interacting with simple configuration files.
 |||^Sanitize -- All sorts of utilities for kicking list's butts, when you need to.
+|||^Groups -- Markup language for data
 ||Ingredients
 |||Lists
 ||||^Access -- Functions for accessing and clarifying lists.
