@@ -17,6 +17,7 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 |||^Configuration -- Tool for interacting with simple configuration files.
 |||^Sanitize -- All sorts of utilities for kicking list's butts, when you need to.
 |||^Groups -- Markup language for data
+|||^Stats -- Statistical analysis for lists.
 ||Ingredients
 |||Lists
 ||||^Access -- Functions for accessing and clarifying lists.
@@ -25,6 +26,7 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 ||||^Break -- Different breaks (filterBreak, removeBreak)
 |||Tupples
 ||||^Look -- Look, tsort
+||||^Assemble -- Sort and assemble lists of numeric tupples.
 
 Cookbook is meant to have very short definitions. The general form for a cookbook function entry is
 
