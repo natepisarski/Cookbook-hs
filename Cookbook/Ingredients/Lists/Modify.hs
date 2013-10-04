@@ -1,5 +1,5 @@
 module Cookbook.Ingredients.Lists.Modify(
-rev,rm,splitOn,snipe,insert) where
+rev,rm,splitOn,snipe,insert,between) where
 
 import qualified Cookbook.Continuous as Cnt
 import qualified Cookbook.Common as Com
@@ -26,3 +26,11 @@ snipe x (t,c) = (take c x) ++ [t] ++ (Com.sub x (c + 1))
 -- | Snipe, workable with lists and does not delete information.
 insert :: (Eq a) => [a] -> ([a],Int) -> [a]
 insert x (t,c) = (take c x) ++ t ++ (Com.sub x c)
+
+-- | Find out what is in between two elements of a list
+between a (c,d) = Cnt.after (Cnt.before a d) c
+
+-- | Intersperse elements into a list.
+intersperse :: [a] -> a -> [a]
+intersperse [x] _ = [x]
+intersperse (x:xs) c =  x:c : intersperse xs c
