@@ -3,7 +3,7 @@ count,contains,qsort,pull,refpos,areAll) where
 
 import qualified Cookbook.Ingredients.Functional.Break as Br
 
-import qualified Cookbook.Common as Cm
+import qualified Cookbook.Essential.Common as Cm
 
 --Count the number of occurances in a list.
 -- | Counts the number of occurences within a list.

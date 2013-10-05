@@ -1,4 +1,4 @@
-module Cookbook.Recipes.Configuration(conf) where
+module Cookbook.Project.Configuration.Configuration(conf) where
 import Cookbook.Ingredients.Lists.Access
 import Cookbook.Ingredients.Lists.Modify
 import Cookbook.Ingredients.Tupples.Look

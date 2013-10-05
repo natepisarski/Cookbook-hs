@@ -2,7 +2,7 @@ module Cookbook.Recipes.Sanitize(blacklist,rmleading,up,down,rmdb,rmdbAll,tolowe
 --"Sanization" is quite the overloaded term. The purpose of this sanitzation lib
 --is to be as unobtrusive yet flexible as possible. This will generally work with
 --strings, so some domain-specific solutions for strings are present in this lib
-import Cookbook.Common
+import Cookbook.Essential.Common
 import Cookbook.Ingredients.Lists.Modify
 import Cookbook.Ingredients.Lists.Access
 import Cookbook.Ingredients.Functional.Break

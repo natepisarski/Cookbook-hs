@@ -5,7 +5,7 @@
 --Great a = Forward by a
 module Cookbook.Recipes.DiffStat(Stat(..),stat,diff,patch) where
 
-import Cookbook.Common
+import Cookbook.Essential.Common
 import Cookbook.Ingredients.Lists.Modify
 import Cookbook.Ingredients.Lists.Access
 import Cookbook.Ingredients.Tupples.Look

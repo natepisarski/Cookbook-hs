@@ -1,4 +1,4 @@
-module Cookbook.Recipes.Stats(frequency,mostFrequent) where
+module Cookbook.Ingredients.Lists.Stats(frequency,mostFrequent) where
 
 import Cookbook.Ingredients.Tupples.Assemble
 import Cookbook.Ingredients.Lists.Access

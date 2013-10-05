@@ -1,0 +1,7 @@
+===Standard for configuration
+Configuration is a lightweight configuration file syntax. The lval is placed on the left of a colon, and the rval on the right.
+
+===Example
+name:joe
+===Example Usage
+(conf c "name") --> joe :: String

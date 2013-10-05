@@ -1,4 +1,4 @@
-module Cookbook.Common(sub,positions,pos,apply,flt) where
+module Cookbook.Essential.Common(sub,positions,pos,apply,flt) where
 
 --Cut a list off at a certain point
 --sub [1,2,3] 1 -> [2 3]

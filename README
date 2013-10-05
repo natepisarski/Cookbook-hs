@@ -1,8 +1,13 @@
+Introduction
+--------------
 Cookbook is a Haskell library used in a load of personal projects.
 
-Cookbook is an addition to the functionallity found in Prelude. It redefines some of the functions found in the Haskell standard library, but this is part of the reason why the library exists. With the exception of Monadic interfaces (IO, Process, Environment, etc), no standard library functions are used or even imported. These libraries are completely standalone, and exist as dependencies to other cookbook files. 
+Cookbook uses barebones Haskell syntax (and some standard library functions for IO) to build a complex cluster of interdependant libraries. The selling point is the library's self-contained nature; any correct ghc installation can compile the entire library, with no external dependencies from Hackage or elsewhere. Cookbook is also exceedingly well documented and portable, with ports available for Lisp and C already. Cookbook will eventually be ported to itself through lhs for better Haddock documentation.
 
-One of the features of the Cookbook library can be considered a hack or pointless, but it's useful. Overloaded typeclasses are used to make incredibly generic functions. Soon every similar function (e.g, snipe and insert) will be available under generic typeclasses, that work on generics themselves. For instance, (after "norton" 't') and (after "norton" "or") are both valid statements, and to use the function "(Eq a)" is the only required restraint.
+As a general rule, files in Cookbook.Project are standards implementations, and nothing inside of the Cookbook library should depend on them.
+
+Overview
+------------
 
 Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 
@@ -10,31 +15,30 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 |PORTS
 ||Lisp
 ||Cfamily
-|^Common -- A copy of the most commonly used functions, depends on nothing.
-|^Continuous -- A typeclass for overloaded functions.
-||Recipes
-|||^Diffstat -- Diff and Patch implementation.
+||Essential -- Provides basic functionallity
+|||^Common -- A copy of the most commonly used functions, depends on nothing.
+|||^Continuous -- A typeclass for overloaded functions.
+||Project -- Standards definitions and implementations.
+|||Configuration -- Very simple unsanitized configuration file syntax.
+|||Groups -- OO markup langauge.
+||Recipes -- Non-generic general-use functions.
+|||^Diffstat -- Diff and patch implementation (about to get a rewrite)
 |||^Configuration -- Tool for interacting with simple configuration files.
 |||^Sanitize -- All sorts of utilities for kicking list's butts, when you need to.
 |||^Groups -- Markup language for data
-|||^Stats -- Statistical analysis for lists.
 ||Ingredients
 |||Lists
 ||||^Access -- Functions for accessing and clarifying lists.
 ||||^Modify -- Modify lists
+||||^Stats -- Statistical analysis for lists.
 |||Functional
 ||||^Break -- Different breaks (filterBreak, removeBreak)
 |||Tupples
 ||||^Look -- Look, tsort
 ||||^Assemble -- Sort and assemble lists of numeric tupples.
 
-Cookbook is meant to have very short definitions. The general form for a cookbook function entry is
+Installing
+-------------
+Cookbook can be installed on hackage with the command "cabal install cookbook". You can also install the package resulting from "runhaskell Setup.hs configure && runhaskell Setup.hs build" with cabal if that's your thing.
 
---Function Purpose comment
---Usage Example
--- | Haddock comment.
-Function Definition
-
-To install Cookbook, you can either run "runhaskell Setup.hs configure && runhaskell Setup.hs build" and run "cabal install" on the resulting package. The library is also available on hackage under the name "cookbook", so "cabal install cookbook" regardless of what directory it's in will download and install it properly.
-
-Cookbook ports are planned for many other functional languages. Currently Lisp and experimental C ports exists. Scala will likely receive a port within the year.
+If you do not want to install Cookbook in a global position, place the Cookbook folder in your project's root directory. Because libraries use an unqualified header-level name, they can be called this way through "Cookbook.*" like normal.

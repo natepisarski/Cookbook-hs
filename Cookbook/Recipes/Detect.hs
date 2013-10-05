@@ -2,7 +2,7 @@ module Cookbook.Recipes.Detect(represent,toRepex,strpex,strmatch,containingPatte
 
 import Data.Maybe
 
-import Cookbook.Common
+import Cookbook.Essential.Common
 import Cookbook.Ingredients.Lists.Access
 import Cookbook.Ingredients.Functional.Break
 

@@ -1,9 +1,9 @@
 {-# LANGUAGE FlexibleInstances     #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module Cookbook.Continuous(Continuous(..)) where
+module Cookbook.Essential.Continuous(Continuous(..)) where
 
-import Cookbook.Common
+import Cookbook.Essential.Common
 import Cookbook.Ingredients.Functional.Break
 import Cookbook.Ingredients.Lists.Access
 

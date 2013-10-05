@@ -1,4 +1,4 @@
-module Cookbook.IO(filelines,prompt) where
+module Cookbook.Essential.IO(filelines,prompt) where
 import System.IO
 import System.Environment
 

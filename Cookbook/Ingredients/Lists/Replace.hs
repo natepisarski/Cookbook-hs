@@ -2,7 +2,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 module Cookbook.Ingredients.Lists.Replace(Replacable(..)) where
-import Cookbook.Common
+import Cookbook.Essential.Common
 
 class Replacable list repls where
   replace  :: list -> repls -> list

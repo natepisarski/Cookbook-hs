@@ -1,8 +1,8 @@
 module Cookbook.Ingredients.Lists.Modify(
 rev,rm,splitOn,snipe,insert,between) where
 
-import qualified Cookbook.Continuous as Cnt
-import qualified Cookbook.Common as Com
+import qualified Cookbook.Essential.Continuous as Cnt
+import qualified Cookbook.Essential.Common as Com
 --Reverse a list
 --rev [1,2,3,4] -> [4,3,2,1]
 -- | Reverses a list
