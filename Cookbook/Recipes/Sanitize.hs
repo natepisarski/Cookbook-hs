@@ -2,39 +2,39 @@ module Cookbook.Recipes.Sanitize(blacklist,rmleading,up,down,rmdb,rmdbAll,tolowe
 --"Sanization" is quite the overloaded term. The purpose of this sanitzation lib
 --is to be as unobtrusive yet flexible as possible. This will generally work with
 --strings, so some domain-specific solutions for strings are present in this lib
-import Cookbook.Essential.Common
-import Cookbook.Ingredients.Lists.Modify
-import Cookbook.Ingredients.Lists.Access
-import Cookbook.Ingredients.Functional.Break
+import qualified Cookbook.Essential.Common as Cm
+import qualified Cookbook.Ingredients.Lists.Modify as Md
+import qualified Cookbook.Ingredients.Lists.Access as Ac
+import qualified Cookbook.Ingredients.Functional.Break as Br
 
 --Generic Underpinnings
 
 -- | Remove each element of the second list from the first.
 blacklist :: (Eq a) => [a] -> [a] -> [a]
-blacklist x c = apply (map (flip rm) c) x
+blacklist x c = Cm.apply (map (flip Md.rm) c) x
 
 -- | Remove leading elements from the list. Useful for getting rid of spaces.
 rmleading :: (Eq a) => [a] -> a -> [a]
-rmleading x c = filterBreak (==c) x
+rmleading x c = Br.filterBreak (==c) x
 
 -- | Move an element in one list to the other, if it is not there already.
 up :: (Eq a) => ([a],[a]) -> [a] -> [a]
-up (a,b) c = map (refpos (a,b)) c
+up (a,b) c = map (Ac.refpos (a,b)) c
 
 -- | Up, but down. If that helps.
 down :: (Eq a) => ([a],[a]) -> [a] -> [a]
-down (a,b) c = map (refpos (b,a)) c
+down (a,b) c = map (Ac.refpos (b,a)) c
 
 -- | Remove all adjacent doubles from the list.
 rmdb :: (Eq a) => [a] -> [a]
 rmdb [] = []
 rmdb [x] = [x]
-rmdb (x:y:zs) = if x == y then x: rmdb (removeBreak (== x) (y:zs)) else x : rmdb (y:zs)
+rmdb (x:y:zs) = if x == y then x: rmdb (Br.removeBreak (== x) (y:zs)) else x : rmdb (y:zs)
 
 -- | Removes absolutely all doubles, leaving the first copy.
 rmdbAll :: (Eq a) => [a] -> [a]
 rmdbAll [] = []
-rmdbAll (x:xs) = x : rmdb (rm xs x)
+rmdbAll (x:xs) = x : rmdb (Md.rm xs x)
 
 --Interface to generic underpinnings
 

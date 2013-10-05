@@ -5,9 +5,7 @@ module Cookbook.Recipes.Detect(represent,toRepex,strpex,strmatch,containingPatte
 
 import Data.Maybe
 
-import Cookbook.Essential.Common
-import Cookbook.Ingredients.Lists.Access
-import Cookbook.Ingredients.Functional.Break
+import qualified Cookbook.Ingredients.Lists.Access as Ac
 
 -- | Represent a list using symbols, and if it's not found, return Nothing.
 represent :: (Eq a) => [([a],b)] -> a -> (Maybe b)
@@ -26,7 +24,7 @@ strpex x = toRepex [(['a'..'z'],'@'),(['A'..'Z'],'!'),(['0'..'9'],'#'),([':'..'@
 
 -- | Does the string contain the standard strpex pattern?
 strmatch :: String -> String -> Bool
-strmatch x c = (strpex x) `contains` c
+strmatch x c = (strpex x) `Ac.contains` c
 
 -- | All lines containing this pattern
 containingPattern :: [String] -> String -> [String]

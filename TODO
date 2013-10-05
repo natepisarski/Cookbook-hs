@@ -1,6 +1,8 @@
 Cookbook is an ever-changing project that gets in-progress commits sometimes. Here are some of the things that will be coming to the table very soon.
 
-Call traces (a full table of dependencies for all Cookbook functions)
-LaTeX documentation, .md documentation of the purpose of the split up directories, and examples of all of the function calls.
+
 Github pages static site
 RPM strap in makeCabalPush
+Move Ds (DiffStat) to Lists
+Move qsort from Ac to Cm
+
