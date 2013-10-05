@@ -1,14 +1,14 @@
 module Cookbook.Ingredients.Lists.Stats(frequency,mostFrequent) where
 
-import Cookbook.Ingredients.Tupples.Assemble
-import Cookbook.Ingredients.Lists.Access
-import Cookbook.Ingredients.Lists.Modify
-import Cookbook.Recipes.Sanitize
+import qualified Cookbook.Ingredients.Tupples.Assemble as As
+import qualified Cookbook.Ingredients.Lists.Access as Ac
+import qualified Cookbook.Ingredients.Lists.Modify as Md
+import qualified Cookbook.Recipes.Sanitize as Sn
 
 -- | Return a list of all elements of the list with its frequency.
 frequency :: (Eq a) => [a] -> [(a,Int)] 
-frequency x = let y = map (\c -> (c,count x c)) x in rmdbAll y
+frequency x = let y = map (\c -> (c,Ac.count x c)) x in Sn.rmdbAll y
 
 -- | Get the x amount of most frequent items in the list.
 mostFrequent :: (Eq a) => [a] -> Int -> [a]
-mostFrequent x c = take c $ rev (assemble  $ frequency x)
+mostFrequent x c = take c $ Md.rev (As.assemble  $ frequency x)

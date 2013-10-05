@@ -1,10 +1,11 @@
-module Cookbook.Ingredients.Lists.Modify(
-rev,rm,splitOn,snipe,insert,between) where
+--Cookbook.Ingredients.Lists.Modify
+--Library for altering the contents of a list.
+
+module Cookbook.Ingredients.Lists.Modify(rev,rm,splitOn,snipe,insert,between) where
 
 import qualified Cookbook.Essential.Continuous as Cnt
-import qualified Cookbook.Essential.Common as Com
---Reverse a list
---rev [1,2,3,4] -> [4,3,2,1]
+import qualified Cookbook.Essential.Common as Cm
+
 -- | Reverses a list
 rev :: [a] -> [a]
 rev [] = []
@@ -21,11 +22,11 @@ splitOn x c = if (c `notElem` x) then [x] else (Cnt.before x c) : splitOn (Cnt.a
 
 -- | Change a location in a list with an element.
 snipe :: (Eq a) => [a] -> (a,Int) -> [a]
-snipe x (t,c) = (take c x) ++ [t] ++ (Com.sub x (c + 1))
+snipe x (t,c) = (take c x) ++ [t] ++ (Cm.sub x (c + 1))
 
 -- | Snipe, workable with lists and does not delete information.
 insert :: (Eq a) => [a] -> ([a],Int) -> [a]
-insert x (t,c) = (take c x) ++ t ++ (Com.sub x c)
+insert x (t,c) = (take c x) ++ t ++ (Cm.sub x c)
 
 -- | Find out what is in between two elements of a list
 between a (c,d) = Cnt.after (Cnt.before a d) c

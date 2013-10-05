@@ -1,46 +1,16 @@
---Library for determining movement of data within a list. 
---data Stat can have one of 3 forms:
---Less a = Back by a
---Even  = Same position
---Great a = Forward by a
-module Cookbook.Recipes.DiffStat(Stat(..),stat,diff,patch) where
+--Cookbook.Recipes.Diffstat
+--A library for logging the movements of elements from one equally sized list to another, and patching others.
+module Cookbook.Recipes.DiffStat(diff,patch) where
 
-import Cookbook.Essential.Common
-import Cookbook.Ingredients.Lists.Modify
-import Cookbook.Ingredients.Lists.Access
-import Cookbook.Ingredients.Tupples.Look
+import qualified Cookbook.Essential.Common as  Cm
+import qualified Cookbook.Ingredients.Tupples.Assemble as As
 
-import Data.Maybe
-data Stat a = Less a | Even |  Great a deriving (Show)
+-- | Returns the transpositions each element of a list made.
+diff :: (Eq a) => [a] -> [a] -> [Int]
+diff  a b = map (\(c,d) -> d-c) difflists
+  where difflists = zip [0..(length a)]  (map ( Cm.pos b) a) -- (orignal,new) positions
 
-stat :: (Eq a) => [a] -> [a] -> a -> Stat Int
-stat x c f
-  | f `notElem` x = error "Unique entry found in stat x"
-  | f `notElem` c = error "Unique entry found in stat c"
-stat x c f
-  | diff < 0  = Less diff
-  | diff == 0 = Even
-  | otherwise = Great diff
-  where diff = (pos x f) - (pos c f)
-
-diff :: (Eq a) => [a] -> [a] -> [Stat Int]
-diff x [] = []
-diff x (c:cs) = stat x (c:cs) c : diff x cs
-
---The compiler doesn't like this type signature for some reason.
---Here it is anyway, and :t in GHCI can even back it up:
---patch :: (Eq a) => [a] -> [Stat Int] -> [Int] 
-patch x c = assemble $ relatdiff posbind c
-  where posbind = zip x [0..((length x))]
-        
---Get the absolute positions of diff lists.
-relatdiff :: (Eq a) => [(a,Int)] -> [Stat Int] -> [(a,Int)]
-relatdiff [] _ = []
-relatdiff _ [] = []
-relatdiff ((a,b):bs) ((Great x):xs) = (a,(b + x)) : relatdiff bs xs
-relatdiff ((a,b):bs) ((Less x):xs) = (a,(b - x)) : relatdiff bs xs
-relatdiff ((a,b):bs) ((Even):xs) = (a,(b-1)) : relatdiff bs xs
-
---Assemble a relatdiff list
-assemble :: [(a,Int)] -> [a]
-assemble x = catMaybes $ map (look (map swp x)) $ qsort (map snd x)
+-- | Makes a list out of a difflist
+patch :: (Eq a) => [a] -> [Int] -> [a]
+patch x c = As.assemble $  zip x (map (\(d,e) -> d+e) ( zip c [0..(length x)]))
+--Diff returns a relative list. patch has to add the index number of the list to the list to be meaningful in As.assemble

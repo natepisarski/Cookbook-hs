@@ -1,5 +1,9 @@
+--Cookbook.Essential.IO
+--IO is the only Cookbook library to import System modules. As the name states, Cookbook.IO makes IO
+--easier and less error-prone by wrapping common IO "gotchas" in a function.
 module Cookbook.Essential.IO(filelines,prompt) where
-import System.IO
+
+import  System.IO
 import System.Environment
 
 -- | Returns the lines of a file, wrapped in an IO.

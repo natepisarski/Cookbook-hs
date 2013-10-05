@@ -1,3 +1,6 @@
+--Cookbook.Recipes.Detect
+--Detect is a regex-like library with a defined standard, but in Recipes because it uses generic functions to implement them.
+
 module Cookbook.Recipes.Detect(represent,toRepex,strpex,strmatch,containingPattern,withPattern) where
 
 import Data.Maybe
@@ -9,9 +12,7 @@ import Cookbook.Ingredients.Functional.Break
 -- | Represent a list using symbols, and if it's not found, return Nothing.
 represent :: (Eq a) => [([a],b)] -> a -> (Maybe b)
 represent [] _ = Nothing
-represent ((a,b):c) item
-  | item `elem` a = (Just b)
-  | otherwise = represent c item
+represent ((a,b):c) item = if item `elem` a then (Just b) else represent c item
 
 -- | Filter maybes out, replacing Nothings with a failsafe "catch-all"
 toRepex :: (Eq a) => [([a],b)] -> [a] -> b-> [b]
@@ -34,8 +35,6 @@ containingPattern x c = filter (flip strmatch c) x
 -- | All patterns matching the pattern
 withPattern :: [String] -> String -> [String]
 withPattern [] _ = []
-withPattern a@(x:xs) c
-  | strpex takeX == c = takeX : withPattern xs c
-  | otherwise = withPattern xs c
+withPattern a@(x:xs) c = if  strpex takeX == c then takeX : withPattern xs c else withPattern xs c
   where takeX = (take (length c) x)
 
