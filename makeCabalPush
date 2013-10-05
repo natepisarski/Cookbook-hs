@@ -1,11 +1,6 @@
 #/bin/bash
-rm -rf ./dist/
-./clean
-runhaskell ./Setup.hs configure
-runhaskell ./Setup.hs build
-rm -rf ./dist/
-runhaskell ./Setup.hs configure
-runhaskell ./Setup.hs sdist
+./makecabal
+read -p "^C out if you do not want to push"
 git add *
 git add -u
 git commit -m "Package rebuild"
