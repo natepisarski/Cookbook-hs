@@ -6,6 +6,8 @@ runhaskell ./Setup.hs build
 rm -rf ./dist/
 runhaskell ./Setup.hs configure
 runhaskell ./Setup.hs sdist
+rm -r PACKAGES/CABAL/
+mkdir PACKAGES/CABAL
 cp dist/cookbook* PACKAGES/CABAL
 ./clean
 rm *.deb
