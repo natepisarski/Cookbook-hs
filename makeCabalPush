@@ -1,6 +1,6 @@
 #/bin/bash
 ./makecabal
-read -p "^C out if you do not want to push"
+read -p "Continue? $ "
 git add *
 git add -u
 git commit -m "Package rebuild"
