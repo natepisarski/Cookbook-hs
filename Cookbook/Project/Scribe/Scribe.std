@@ -1,0 +1,12 @@
+===Standard for scribe
+Scribe is a database system for Haskell. It supports reading for tables, which are filled with named data called Maps.
+
+===Example
+table diary{
+item Saturday: Met my friend at blah blah
+item Sunday: Did something
+item Sunday: Did something on the same day as before.
+}
+
+===Example Usage
+table "diary" -> [("Saturday","Met my friend at blah blah blah"),("Sunday","Did something")("Sunday","Did something on the same day as before")]

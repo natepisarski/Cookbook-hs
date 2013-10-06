@@ -10,7 +10,7 @@ name:                cookbook
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             1.2.0.0
+version:             1.2.1.0
 
 -- A short (one-line) description of the package.
 synopsis:            A delicious set of interdependant libraries.
@@ -47,7 +47,7 @@ cabal-version:       >=1.8
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO, Cookbook.Recipes.DiffStat, Cookbook.Project.Configuration.Configuration, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble, Cookbook.Recipes.Detect, Cookbook.Project.Groups.Groups, Cookbook.Recipes.Sanitize, Cookbook.Ingredients.Lists.Replace
+  exposed-modules:     Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO, Cookbook.Recipes.DiffStat, Cookbook.Recipes.Text, Cookbook.Project.Configuration.Configuration, Cookbook.Project.Scribe.Scribe, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble, Cookbook.Recipes.Detect, Cookbook.Project.Groups.Groups, Cookbook.Recipes.Sanitize, Cookbook.Ingredients.Lists.Replace
   
   -- Modules included in this library but not exported.
   -- other-modules:       
