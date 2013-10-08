@@ -1,4 +1,5 @@
 #/bin/bash
+cabal install
 rm -rf ./dist/
 ./clean
 runhaskell ./Setup.hs configure

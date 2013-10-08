@@ -1,7 +1,7 @@
 
 --Cookbook.Project.Scribe.Scribe
 --Library for reading scribe databases
-module Cookbook.Project.Scribe.Scribe(Table,Database,isTable,makeTable,parse,table) where
+module Cookbook.Project.Scribe.Scribe(Table,Database,isTable,makeTable,parse,table,rmTable) where
 
 import qualified Cookbook.Essential.Continuous             as Ct
 import qualified Cookbook.Essential.Common                 as Cm
@@ -39,11 +39,14 @@ type Table = (String,[(String,String)])
 type Database = [Table]
 
 parse :: [String] -> Database
+parse [] = []
 parse (x:xs) = if isTable x then makeTable (x:xs) : (parse (afterTable xs)) else parse xs
   where afterTable c = (Br.removeBreak (\d -> '}' `notElem` d) c)
 
 table :: String -> Database -> [(String,String)]
 table c x = let i = Lk.look x c in case i of (Just i) -> i; Nothing -> []
+
+rmTable :: String -> Database -> Database
+rmTable _ [] = []
+rmTable c ((a,b):cs) = Md.rm ((if c == a then ([],[]) else (a,b)) : rmTable c cs) ("",[])
 --
-
-
