@@ -1,7 +1,7 @@
 --Cookbook.Ingredients.Tupples.Look
 --This library is for manipulating and searching lists of two-element tupples.
 
-module Cookbook.Ingredients.Tupples.Look(look,lookList,swp) where
+module Cookbook.Ingredients.Tupples.Look(look,lookList,swp,rmLook) where
 
 -- | Returns the second element of the first tupple where the first element matches input.
 look :: (Eq a) => [(a,b)] -> a -> (Maybe b)
@@ -15,3 +15,9 @@ lookList a b =  [d | (c,d) <- a, c == b]
 -- | Swap the order of a second-degree tupple.
 swp :: (a,b) -> (b,a)
 swp    (a,b)  = (b,a)
+
+-- | Reverse this.look. Will remove any matches.
+rmLook :: (Eq a) => [(a,b)] -> a -> [(a,b)]
+rmLook [] _ = []
+rmLook ((a,b):cs) d = if a == d then cs else (a,b) : rmLook cs d
+
