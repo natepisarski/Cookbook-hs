@@ -1,11 +1,13 @@
 --Cookbook.Ingredients.Lists.Modify
 --Library for altering the contents of a list.
 
-module Cookbook.Ingredients.Lists.Modify(rev,rm,splitOn,snipe,insert,between) where
+module Cookbook.Ingredients.Lists.Modify(rev,rm,splitOn,snipe,insert,between,linesBetween) where
 
 import qualified Cookbook.Essential.Continuous as Cnt
 import qualified Cookbook.Essential.Common as Cm
 
+import qualified Cookbook.Ingredients.Functional.Break as Br
+import qualified Cookbook.Ingredients.Lists.Access as Ac
 -- | Reverses a list
 rev :: [a] -> [a]
 rev [] = []
@@ -29,7 +31,11 @@ insert :: (Eq a) => [a] -> ([a],Int) -> [a]
 insert x (t,c) = (take c x) ++ t ++ (Cm.sub x c)
 
 -- | Find out what is in between two elements of a list
-between a (c,d) = Cnt.after (Cnt.before a d) c
+between :: (Eq a) => [a] -> (a,a) -> [a]
+between a (c,d) = Cnt.after (take (last $ Cm.positions a d) a) c
+
+linesBetween :: (Eq a) => [[a]] -> ([a],[a]) -> [[a]]
+linesBetween a (c,d) = tail $ Br.filterBreak (\e -> not $ Ac.contains e d) $ Br.removeBreak (\e -> not $ Ac.contains e c) a
 
 -- | Intersperse elements into a list.
 intersperse :: [a] -> a -> [a]

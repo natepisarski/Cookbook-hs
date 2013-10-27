@@ -21,6 +21,7 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 ||Project -- Standards definitions and implementations.
 |||Configuration -- Very simple unsanitized configuration file syntax.
 |||Groups -- OO markup langauge.
+|||Scribe -- Database management system / language. Uses curly-brace syntax. Nobody really knows how this works.
 ||Recipes -- Non-generic general-use functions.
 |||^Diffstat -- Diff and patch implementation.
 |||^Configuration -- Tool for interacting with simple configuration files.

@@ -29,3 +29,5 @@ Cookbook.Recipes.Sanitize: Sn
 Cookbook.Project.Configuration.Configuration: Cf
 
 Cookbook.Project.Groups.Groups: Gp
+
+Cookbook.Project.Scribe.Scribe: Sc

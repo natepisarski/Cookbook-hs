@@ -1,7 +1,7 @@
 --Cookbook.Ingredients.Lists.Access
 --Access is a library for generating statistics about a list. The lists are not changed as a result
 --of executing any Access function.
-module Cookbook.Ingredients.Lists.Access(count,contains,qsort,pull,refpos,areAll,isBefore) where
+module Cookbook.Ingredients.Lists.Access(count,contains,qsort,pull,refpos,areAll,isBefore,surrounds) where
 
 import qualified Cookbook.Ingredients.Functional.Break as Br
 
@@ -40,3 +40,6 @@ areAll x c = not $ Br.imbreak (/=c) x
 -- | Is the list a prefix of another?
 isBefore :: (Eq a) => [a] -> [a] -> Bool
 isBefore li tf = take (length tf) li == tf
+
+surrounds :: (Eq a) => (a,a) -> [a] -> Bool
+surrounds (b,c) a = (head a, last a) == (b,c)

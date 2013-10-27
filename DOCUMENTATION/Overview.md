@@ -76,3 +76,6 @@ Cookbook.Projects.Configuration.Configuration (Cf) is a library for reading the 
 
 ### Groups.hs
 Cookbook.Projects.Groups.Groups (Gp) is a group library. It defines a markup language that uses "object-orientation" to define how data should look, and then allows user implementations of such data.
+
+### Scribe.hs
+Scribe is a language for use with databases. Like SQL databases, Scribe supports tables, rows, columns, and individual entries. Scribe is "self-aware" in the sense that it can reference its own tables through a function called "Promises". When a Promise is made, it is left  unparsed as a Frame type (construct Promise {keyval=name,link=otherTable}). There is no implementation to resolve promises. This is left up to the discretion of the application using Scribe.

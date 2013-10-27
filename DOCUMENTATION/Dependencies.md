@@ -29,3 +29,5 @@ Cookbook.Recipes.Sanitize: Cm, Md, Ac, Br
 Cookbook.Project.Configuration.Configuration: Ac, Md, Lk
 
 Cookbook.Project.Groups.Groups: Md, Lk, Ct
+
+Cookbook.Project.Scribe.Scribe: Cm, Ct, Md, Ac, Lk, Br, St

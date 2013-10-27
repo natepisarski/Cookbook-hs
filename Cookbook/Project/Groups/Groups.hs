@@ -5,7 +5,7 @@ module Cookbook.Project.Groups.Groups(Constructor,construct,implement) where
 
 import qualified Cookbook.Ingredients.Lists.Modify as Md
 import qualified Cookbook.Ingredients.Tupples.Look as Lk
-import qualified Cookbook.Essential.Continuous as Ct
+import qualified Cookbook.Essential.Continuous     as Ct
 
 type Constructor = (String,[String])
 

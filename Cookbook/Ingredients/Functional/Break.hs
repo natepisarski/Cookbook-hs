@@ -4,7 +4,7 @@
 --untrue value. As an addition to this library are functions relating to
 --mapping predicates over lists to yield either a different result or one solution.
 
-module Cookbook.Ingredients.Functional.Break(removeBreak, filterBreak,btr,imbreak) where
+module Cookbook.Ingredients.Functional.Break(removeBreak, filterBreak,btr,imbreak,splitBool) where
 
 -- | When the predicate returns false, removeBreak returns the rest of the list.
 removeBreak :: (a -> Bool) -> [a] -> [a]
@@ -23,3 +23,10 @@ imbreak f = or . map f
 -- | Conditionally transform input based on the predicate. When it is true, fst of the tupple is used, snd otherwise.
 btr :: (a -> Bool) -> (b,b) -> [a] -> [b]
 btr f (a,b) = map (\c -> if f c then a else b)
+
+
+splitBool :: (Eq a) => (a -> Bool) -> [a] -> [[a]]
+splitBool _ [] = []
+splitBool f c = filter (/= []) (fP: if fP /= [] then (splitBool f tP) else [])
+  where fP = filterBreak f c
+        tP = removeBreak f c
