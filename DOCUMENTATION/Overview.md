@@ -44,6 +44,8 @@ Cookbook.Ingredients.Lists.Replace (Rp) is a library for replacing parts of list
 ### Stats.hs
 Cookbook.Ingredients.Lists.Stats (St) is a library for Statistical analysis on lists. Currently the library has a bunch of code for frequency analysis in there. Any type of statistical test (or test out of place in the other libraries) can be put in Stats.hs
 
+### Remove.hs
+Cookbook.Ingredients.Lists.Remove (Rm) is a library for removing items from lists. Like a lot of important Cookbook functions, Rm is an OGI overloaded for lists and single items. It also supports a tupple of two items, where it will remove the text between them, and the text in the tupples.
 Tupples
 --------
 Tupples are a curious case of Haskell data. They are restricted to a length, which can be a pain when defining a library meant to work on Generics. Cookbook.Ingredients.Tupples is meant to work on two-sided tupples, because they are the most common use of tupples. (See: Zip)
@@ -79,3 +81,6 @@ Cookbook.Projects.Groups.Groups (Gp) is a group library. It defines a markup lan
 
 ### Scribe.hs
 Scribe is a language for use with databases. Like SQL databases, Scribe supports tables, rows, columns, and individual entries. Scribe is "self-aware" in the sense that it can reference its own tables through a function called "Promises". When a Promise is made, it is left  unparsed as a Frame type (construct Promise {keyval=name,link=otherTable}). There is no implementation to resolve promises. This is left up to the discretion of the application using Scribe.
+
+### Preprocess.hs
+Preprocess is a library for reading the preprocess language. Preprocess maps multiple inputs to one output for use in chat bots and text preprocessors. Preprocess supports comments between two dollar signs $$. An odd number of dollar signs can be used for use in mapping either inputs or outputs. Inline comments will be removed as well.

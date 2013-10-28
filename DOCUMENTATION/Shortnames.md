@@ -16,6 +16,8 @@ Cookbook.Ingredients.Lists.Replace: Rp
 
 Cookbook.Ingredients.Lists.Stats: St
 
+Cookbook.Ingredients.Lists.Remove: Rm
+
 Cookbook.Ingredients.Tupples.Assemble: As
 
 Cookbook.Ingredients.Tupples.Look: Lk
@@ -31,3 +33,5 @@ Cookbook.Project.Configuration.Configuration: Cf
 Cookbook.Project.Groups.Groups: Gp
 
 Cookbook.Project.Scribe.Scribe: Sc
+
+Cookbook.Project.Preprocess.Preprocess: Pp

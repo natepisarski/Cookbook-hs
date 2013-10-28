@@ -1,0 +1,8 @@
+===Standard for Preprocess
+Preprocess is a language that can be used for a host of applications. Preprocess syntax defines a set of strings that are equivelant to one string. These equivelance trees can be used in configuration files or scripts.
+
+===Example
+hello|hi_hey
+
+===Example usage
+makeParameters Example --> [(hello,hey),(hi,hey)]
