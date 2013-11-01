@@ -34,6 +34,7 @@ insert x (t,c) = (take c x) ++ t ++ (Cm.sub x c)
 between :: (Eq a) => [a] -> (a,a) -> [a]
 between a (c,d) = Cnt.after (take (last $ Cm.positions a d) a) c
 
+-- | Selectively parse a list based on the existance of a substring.
 linesBetween :: (Eq a) => [[a]] -> ([a],[a]) -> [[a]]
 linesBetween a (c,d) = tail $ Br.filterBreak (\e -> not $ Ac.contains e d) $ Br.removeBreak (\e -> not $ Ac.contains e c) a
 
@@ -41,3 +42,4 @@ linesBetween a (c,d) = tail $ Br.filterBreak (\e -> not $ Ac.contains e d) $ Br.
 intersperse :: [a] -> a -> [a]
 intersperse [x] _ = [x]
 intersperse (x:xs) c =  x:c : intersperse xs c
+
