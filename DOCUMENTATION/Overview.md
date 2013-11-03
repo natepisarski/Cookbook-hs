@@ -69,6 +69,15 @@ Cookbook.Recipes.DiffStat (Ds) is a library for finding the differences between 
 ### Sanitize.hs
 Cookbook.Recipes.Sanitize (Sn) is a library for performing common sanitization techniques on text and lists. It can do things like remove doubles from Lists, or move characters to uppercase.
 
+### DataStructures.hs
+Cookbook.Recipes.DataStructures (Dt) is a library for organizing ideas into higher-level data. Data structures specific to one use (such as the Databases from Sc) should be kept to the Project branch. This is for generic data structures, such as Tree. For functions working with these data structures, use Ag.
+
+### Math.hs
+Cookbook.Recipes.Math (Mt) is a library for performing simple mathematical functions and statistical analysis. Simple functions like inc and dec ((+1) (-1)) are included for convenience, and more complex formulae (standard deviation) are included as well.
+
+### Algorithm.hs
+Cookbook.Recipes.Algorithm (Ag) is a library for parsing, manipulating, and using Dt's data structures in any fashion.
+
 Projects
 ==========
 Projects is the final branch of the Cookbook library. Projects is a defintion of standards and an implementation of this defintiion. This means that it can contain "magic characters" which are specific to the set of standards defined. Items in Projects assume a certain structure that make them void to use anywhere else. The exact structure should be defined in a file next to the library with the ".std" extension. By convention, all Project files are inside themselves.

@@ -12,3 +12,4 @@ frequency x = let y = map (\c -> (c,Ac.count x c)) x in Sn.rmdbAll y
 -- | Get the x amount of most frequent items in the list.
 mostFrequent :: (Eq a) => [a] -> Int -> [a]
 mostFrequent x c = take c $ Md.rev (As.assemble  $ frequency x)
+

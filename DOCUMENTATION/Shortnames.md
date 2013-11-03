@@ -28,6 +28,12 @@ Cookbook.Recipes.DiffStat: Ds
 
 Cookbook.Recipes.Sanitize: Sn
 
+Cookbook.Recipes.DataStructures: Dt
+
+Cookbook.Recipes.Math: Mt
+
+Cookbook.Recipes.Algorithm: Ag
+
 Cookbook.Project.Configuration.Configuration: Cf
 
 Cookbook.Project.Groups.Groups: Gp

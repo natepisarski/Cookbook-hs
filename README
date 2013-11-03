@@ -9,7 +9,7 @@ As a general rule, files in Cookbook.Project are standards implementations, and 
 Overview
 ------------
 
-Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
+Cookbook has the following layout. | = directory, ^=file (as per bpp syntax) (See DOCUMENTATION for a better overview of what each one does)
 
 |cookbook
 |PORTS
@@ -18,20 +18,25 @@ Cookbook has the following layout. | = directory, ^=file (as per bpp syntax)
 ||Essential -- Provides basic functionallity
 |||^Common -- A copy of the most commonly used functions, depends on nothing.
 |||^Continuous -- A typeclass for overloaded functions.
+|||^IO -- A collection of functions dealing with the IO monad (strict).
 ||Project -- Standards definitions and implementations.
 |||Configuration -- Very simple unsanitized configuration file syntax.
 |||Groups -- OO markup langauge.
 |||Scribe -- Database management system / language. Uses curly-brace syntax. Nobody really knows how this works.
 ||Recipes -- Non-generic general-use functions.
 |||^Diffstat -- Diff and patch implementation.
-|||^Configuration -- Tool for interacting with simple configuration files.
 |||^Sanitize -- All sorts of utilities for kicking list's butts, when you need to.
-|||^Groups -- Markup language for data
+|||^Algorithm -- Functions working with higher-level data structures
+|||^DataStructures -- Data structures with complex, often recursive, definitions.
+|||^Detect -- Regex-like string searching utility.
+|||^Math -- Collections of mathematical functions.
 ||Ingredients
 |||Lists
 ||||^Access -- Functions for accessing and clarifying lists.
 ||||^Modify -- Modify lists
 ||||^Stats -- Statistical analysis for lists.
+||||^Remove -- OGI for removing text.
+|||^Replace -- OGI for replacing text.
 |||Functional
 ||||^Break -- Different breaks (filterBreak, removeBreak)
 |||Tupples
