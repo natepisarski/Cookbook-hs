@@ -42,4 +42,3 @@ linesBetween a (c,d) = tail $ Br.filterBreak (\e -> not $ Ac.contains e d) $ Br.
 intersperse :: [a] -> a -> [a]
 intersperse [x] _ = [x]
 intersperse (x:xs) c =  x:c : intersperse xs c
-

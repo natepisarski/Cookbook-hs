@@ -1,6 +1,6 @@
 --Cookbook.Recipes.Math
 --A library for mathematical formulas, parsing, and conversions.
-module Cookbook.Recipes.Math(inc,dec,sqr,avg,stdev) where
+module Cookbook.Recipes.Math(inc,dec,sqr,avg,stdev,fact) where
 
 --Simple, helper arithmetic functions.
 inc :: (Num a) => a -> a
@@ -19,3 +19,7 @@ avg x = sum x / (realToFrac $ length x)
 stdev :: (Fractional a, Floating a) => [a] -> a
 stdev x = sqrt $ diffs / realToFrac (length x)
   where diffs = sum $ [sqr $ a - avg x| a <- x]
+
+-- Simple factorial, using fold.
+fact :: Int -> Int
+fact x = foldl (*) x [1..dec x]
