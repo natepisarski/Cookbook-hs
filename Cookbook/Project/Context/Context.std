@@ -1,0 +1,25 @@
+===Standard for Context
+Context is a language for defining binary parses on data. It supports blocks, named blocks, and references. A block is a declaration of what type of parser to use on data. The parser module should accept a list of strings and return one value, which can be of any type. The block, if it is given a name with [] after the declaration, can be called at any point. References can point to {=name=} or [=run=], which will substitute a list of strings in at that point.
+
+===Example
+{=plain=}
+  This is some plain text. The plain text parser should
+  parse this no problem!
+{plain}
+
+{=meta=}
+  [x][1]
+  [item 2][value]
+{meta}
+
+{=lisp=}[hworld-lisp]
+  (defun hworld (x) x)
+  (hworld "Hello World")
+{lisp}
+
+{=shell=}
+  echo {=hworld-lisp=}
+{shell}
+
+===Example Usage
+conway file.ctx
