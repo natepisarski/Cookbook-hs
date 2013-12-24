@@ -41,3 +41,5 @@ Cookbook.Project.Groups.Groups: Gp
 Cookbook.Project.Scribe.Scribe: Sc
 
 Cookbook.Project.Preprocess.Preprocess: Pp
+
+Cookbook.Project.Quill.Quill: Qu

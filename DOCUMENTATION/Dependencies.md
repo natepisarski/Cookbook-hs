@@ -41,3 +41,5 @@ Cookbook.Project.Groups.Groups: Md, Lk, Ct
 Cookbook.Project.Scribe.Scribe: Cm, Ct, Md, Ac, Lk, Br, St
 
 Cookbook.Project.Preprocess.Preprocess: Rp, Md, Rm
+
+Cookbook.Project.Quill.Quill: Ct, Md, Rm, Cm, Lk

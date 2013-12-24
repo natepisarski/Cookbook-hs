@@ -93,3 +93,6 @@ Scribe is a language for use with databases. Like SQL databases, Scribe supports
 
 ### Preprocess.hs
 Preprocess is a library for reading the preprocess language. Preprocess maps multiple inputs to one output for use in chat bots and text preprocessors. Preprocess supports comments between two dollar signs $$. An odd number of dollar signs can be used for use in mapping either inputs or outputs. Inline comments will be removed as well.
+
+### Quill.hs
+Quill is a library for reading and returning very simple read-only databases. It currently does not selectively parse like Scribe does, and is a non-whitespace significant language, unlike Scribe. Comment support will come at some point in time, as well as a richer API than the tables function.
