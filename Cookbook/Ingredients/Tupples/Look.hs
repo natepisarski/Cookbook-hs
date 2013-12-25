@@ -10,7 +10,7 @@ look (a:b) c = if fst a == c then Just (snd a) else look b c
 
 -- | Returns all second elements where (fst t) matches the input.
 lookList :: (Eq a) => [(a,b)] -> a -> [b]
-lookList a b =  [d | (c,d) <- a, c == b]
+lookList a b = map snd $ filter (\(c,d) -> c == b) a
 
 -- | Swap the order of a second-degree tupple.
 swp :: (a,b) -> (b,a)
