@@ -1,4 +1,4 @@
-module Cookbook.Project.Quill.Quill(tblNames,tables,getTable,lookUp,createTable,removeTable,removeItem,addItem,tableToString) where
+module Cookbook.Project.Quill.Quill(tblNames,tables,getTable,lookUp,createTable,removeTable,removeItem,addItem,tableToString,changeItem) where
 import qualified Cookbook.Essential.Common         as Cm
 import qualified Cookbook.Essential.Continuous     as Ct
 import qualified Cookbook.Ingredients.Lists.Remove as Rm
@@ -11,7 +11,7 @@ data Table = Table {name :: String, info :: [(String,String)]}
 
 -- Parsing
 prepare :: [String] -> String
-prepare = ((flip Sn.blacklist) [' ','\n']) . Cm.flt .("{":)
+prepare = ((flip Sn.blacklist) [' ','\n']) . Cm.flt
 
 tokenize :: [a] -> [(a,a)]
 tokenize []  = []
@@ -20,7 +20,7 @@ tokenize (x:y:xs) = (x,y) : tokenize xs
 
 -- Table access
 tblNames :: String -> [String]
-tblNames = flip Md.surroundedBy $ ('}','{')
+tblNames x = (Ct.before x '{') : Md.surroundedBy x ('}','{')
 
 
 headlessData :: String -> [[String]]
@@ -33,7 +33,7 @@ tokenLists x =  map tokenize $ map Cm.flt ( map (map ((flip Md.splitOn) ':')) x)
 -- API functions
 tables :: [String] -> [(String,[(String,String)])]
 tables x = let y = prepare x in
-  tail $ zip (tblNames y) $ tokenLists (headlessData y)
+   zip (tblNames y) $ tokenLists (headlessData y)
 
 getTable :: [(String,[(String,String)])] -> String -> [(String,String)]
 getTable x c = Cm.flt $ Lk.lookList x c
@@ -56,6 +56,9 @@ removeItem ((tbl,ite):re) (tb,it)
 addItem :: [(String,[(String,String)])] -> String -> (String,String) -> [(String,[(String,String)])]
 addItem [] _ _ = []
 addItem ((a,b):c) tb it = if a == tb then (a,it:b) : addItem c tb it else (a,b) : addItem c tb it
+
+changeItem :: [(String,[(String,String)])] -> (String,String) -> String -> [(String,[(String,String)])]
+changeItem db (tb,it) c = addItem (removeItem db (tb,it)) tb (it,c)
 
 tableToString :: (String,[(String,String)]) -> String
 tableToString (x,b) = x ++ "{" ++ (Cm.flt (map detokenize b)) ++ "}"
