@@ -48,7 +48,7 @@ cabal-version:       >=1.8
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Cookbook.Project.Context.Context, Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO, Cookbook.Recipes.DiffStat,  Cookbook.Project.Configuration.Configuration, Cookbook.Project.Scribe.Scribe, Cookbook.Project.Preprocess.Preprocess, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Remove, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble, Cookbook.Recipes.Detect, Cookbook.Project.Groups.Groups, Cookbook.Recipes.Sanitize, Cookbook.Ingredients.Lists.Replace, Cookbook.Recipes.Math,Cookbook.Recipes.DataStructures,Cookbook.Recipes.Algorithm, Cookbook.Project.Quill.Quill
+  exposed-modules:     Cookbook.Project.Context.Context, Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO, Cookbook.Recipes.DiffStat,  Cookbook.Project.Configuration.Configuration, Cookbook.Project.Scribe.Scribe, Cookbook.Project.Preprocess.Preprocess, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Remove, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble, Cookbook.Recipes.Detect, Cookbook.Project.Groups.Groups, Cookbook.Recipes.Sanitize, Cookbook.Ingredients.Lists.Replace, Cookbook.Recipes.Math,Cookbook.Recipes.DataStructures,Cookbook.Recipes.Algorithm, Cookbook.Project.Quill.Quill, Cookbook.Ingredients.Lists.Splice
   
   -- Modules included in this library but not exported.
   -- other-modules:       

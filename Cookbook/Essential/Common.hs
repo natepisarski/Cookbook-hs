@@ -5,7 +5,7 @@
 --informational contexts for modifying/accessing lists. They are placed in this high of a module because
 --of how ubiquitous their use is, even though they fit in with Cookbook.Ingredients.Lists
 
-module Cookbook.Essential.Common(sub,positions,pos,apply,flt) where
+module Cookbook.Essential.Common(sub,positions,pos,apply,flt,fromLast) where
 
 -- | Returns a new list starting at a position. List positions start at 0.
 sub :: (Eq a) => [a] -> Int -> [a]
@@ -33,4 +33,7 @@ flt :: [[a]] -> [a]
 flt [] = []
 flt (x:xs) = x ++ flt xs
 
-
+fromLast :: ([a] -> [a]) -> [a] -> [a]
+fromLast f c = rev $ f $ rev c
+  where rev [] = []
+        rev (x:xs) = rev xs ++ [x]

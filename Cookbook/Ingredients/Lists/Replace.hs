@@ -13,7 +13,7 @@ class Replacable list repls where
 
 -- | Transforms lists of any type.
   replace  :: list -> repls -> list
-
+  
 instance (Eq a) => Replacable [a] (a,a) where
   replace lst (on,tw) = map (\c -> if c == on then tw else c) lst
   
