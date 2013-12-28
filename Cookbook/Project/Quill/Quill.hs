@@ -4,14 +4,16 @@ import qualified Cookbook.Essential.Continuous     as Ct
 import qualified Cookbook.Ingredients.Lists.Remove as Rm
 import qualified Cookbook.Ingredients.Lists.Modify as Md
 import qualified Cookbook.Ingredients.Lists.Access as Ac
+import qualified Cookbook.Ingredients.Lists.Splice as Sp
 import qualified Cookbook.Ingredients.Tupples.Look as Lk
 import qualified Cookbook.Recipes.Sanitize         as Sn
+
 --Custom data
 data Table = Table {name :: String, info :: [(String,String)]}
 
 -- Parsing
 prepare :: [String] -> String
-prepare = ((flip Sn.blacklist) [' ','\n']) . Cm.flt
+prepare = ((flip Sp.splice) ("(*","*)")) . ((flip Sn.blacklist) [' ','\n']) . Cm.flt
 
 tokenize :: [a] -> [(a,a)]
 tokenize []  = []
