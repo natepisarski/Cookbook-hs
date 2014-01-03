@@ -1,23 +1,22 @@
 --Cookbook.Essential.IO
 --IO is the only Cookbook library to import System modules. As the name states, Cookbook.IO makes IO
 --easier and less error-prone by wrapping common IO "gotchas" in a function.
-module Cookbook.Essential.IO(filelines,prompt,inhome,getHomePath,filename,modulename) where
+module Cookbook.Essential.IO where
 
-import qualified System.IO as LIO
-import  qualified System.IO.Strict as SIO
-import qualified Cookbook.Essential.Continuous as Ct
+import qualified System.IO                         as LIO
+import qualified System.IO.Strict                  as SIO
+import qualified Cookbook.Essential.Continuous     as Ct
 import qualified Cookbook.Ingredients.Lists.Modify as Md
-import System.Environment
+
+import System.Environment       
 import System.Directory
 
--- | Returns the lines of a file, wrapped in an IO.
 filelines :: String -> IO ([String])
 filelines x = do
   y <- LIO.openFile x LIO.ReadMode
   yc <- SIO.hGetContents y
   return (lines yc)
 
--- | Prompts the user for a string
 prompt :: String -> IO (String)
 prompt x = do
     putStr x

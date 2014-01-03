@@ -12,7 +12,7 @@ It can be debated that Cookbook.Essential.Continuous is out of place in Cookbook
 Cookbook.Essential.Common (Cm) is the true root of Cookbook. It relies on nothing, and takes no prisoners. It defines functions that lay the framework for the rest of the Cookbook library, such as sub and positions. In Cookbook libraries, the Common library is there to "pad" the features of a language to make implementing the rest of Cookbook possible.
 
 ### Continuous.hs
-Cookbook.Essential.Continuous (Ct) is something called an "Overloaded generic interface" in Cookbook. An OGI defines a set of behavior, but not what kind of data it works on. This is a bit of a hack, because anything works inside of the function. You do not have to constrain against Cnt.Continuous() even though the typeclass implements the behavior of the library. Long story short: be careful with what kind of Data you use after, before, and delete on.
+Continuous is an important Coobkook library for interacting with variable kinds of data (Ct). It is able to adapt to its input, acting as overloaded functions do in other languages.
 
 ### IO.hs
 Cookbook.Essential.IO (Co) is a relatively new and unused library. It performs actions with IO, and currently only has two. IO actions in Haskell are usually VERY domain-specific, so not much ever makes it into CIO. However, what does work works well, and is usually safer than trying to implement the IO yourself. CIO accounts for laziness, while not jumblings things up with libraries like Bytestring.
@@ -38,14 +38,9 @@ Cookbook.Ingredients.Lists.Access (Ac) is a library for accessing the contents o
 ### Modify.hs
 Cookbook.Ingredients.Lists.Modify (Md) is a library for modifying the contents of lists. Reversing is an example of a modification function, beacuse it doesn't tell us any other information about the list other than what its contents can already tell us. If the modification of a list is the result of an algorithm (as is the case with qsort), then it should be placed in Access or Stats, because they are designed for List tests and Frequency Analysis.
 
-### Replace.hs
-Cookbook.Ingredients.Lists.Replace (Rp) is a library for replacing parts of lists. Rp is a OGI like Continuous is, working on every permutation of possible arguments to the function. 
-
 ### Stats.hs
 Cookbook.Ingredients.Lists.Stats (St) is a library for Statistical analysis on lists. Currently the library has a bunch of code for frequency analysis in there. Any type of statistical test (or test out of place in the other libraries) can be put in Stats.hs
 
-### Remove.hs
-Cookbook.Ingredients.Lists.Remove (Rm) is a library for removing items from lists. Like a lot of important Cookbook functions, Rm is an OGI overloaded for lists and single items. It also supports a tupple of two items, where it will remove the text between them, and the text in the tupples.
 Tupples
 --------
 Tupples are a curious case of Haskell data. They are restricted to a length, which can be a pain when defining a library meant to work on Generics. Cookbook.Ingredients.Tupples is meant to work on two-sided tupples, because they are the most common use of tupples. (See: Zip)
@@ -59,12 +54,6 @@ Cookbook.Ingredients.Tupples.Look (Lk) is a library for finding tupples in a lis
 Recipes
 ========
 What is a chef without some delicious recipes? A skilled cullinary artisan should be able to make themselves a meal without direction, but what about when the guest he's serving asks for an Exotic meadly of all sorts of junk you've never heard of? This is where Recipes comes in. Recipes either do not work on Generics fully, or are domain-specific while still working with generics.
-
-### Detect.hs
-Cookbook.Recipes.Detect (Dt) is a library for using generic symbols for text. It has a generic underpinning, which functions interact with to make a defined standard for a "strpex". A strpex is a way of defining the "shape" of text, so that algorithms inside of Dt can search for them.
-
-### DiffStat.hs
-Cookbook.Recipes.DiffStat (Ds) is a library for finding the differences between lists, and recreating the changes that caused the difference between the two original changes. If you are familiar with diff and patch on Unix systems, Ds solves the same problem.
 
 ### Sanitize.hs
 Cookbook.Recipes.Sanitize (Sn) is a library for performing common sanitization techniques on text and lists. It can do things like remove doubles from Lists, or move characters to uppercase.
@@ -84,12 +73,6 @@ Projects is the final branch of the Cookbook library. Projects is a defintion of
 
 ### Configuration.hs
 Cookbook.Projects.Configuration.Configuration (Cf) is a library for reading the most simple type of configuration file available. It expects that the files have lines seperated by commas, where the left is a configuration option, and the right is its value.
-
-### Groups.hs
-Cookbook.Projects.Groups.Groups (Gp) is a group library. It defines a markup language that uses "object-orientation" to define how data should look, and then allows user implementations of such data.
-
-### Scribe.hs
-Scribe is a language for use with databases. Like SQL databases, Scribe supports tables, rows, columns, and individual entries. Scribe is "self-aware" in the sense that it can reference its own tables through a function called "Promises". When a Promise is made, it is left  unparsed as a Frame type (construct Promise {keyval=name,link=otherTable}). There is no implementation to resolve promises. This is left up to the discretion of the application using Scribe.
 
 ### Preprocess.hs
 Preprocess is a library for reading the preprocess language. Preprocess maps multiple inputs to one output for use in chat bots and text preprocessors. Preprocess supports comments between two dollar signs $$. An odd number of dollar signs can be used for use in mapping either inputs or outputs. Inline comments will be removed as well.

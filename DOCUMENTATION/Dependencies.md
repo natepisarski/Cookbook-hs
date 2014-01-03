@@ -12,19 +12,11 @@ Cookbook.Ingredients.Lists.Access: Br, Cm
 
 Cookbook.Ingredients.Lists.Modify: Ct, Cm
 
-Cookbook.Ingredients.Lists.Replace: Cm
-
 Cookbook.Ingredients.Lists.Stats: As, Ac, Md, Sn
-
-Cookbook.Ingredients.Lists.Remove: Cm, Br, Md
 
 Cookbook.Ingredients.Tupples.Assemble: 
 
 Cookbook.Ingredients.Tupples.Look: 
-
-Cookbook.Recipes.Detect: Ac, Data.Maybe
-
-Cookbook.Recipes.DiffStat: Cm, As
 
 Cookbook.Recipes.Sanitize: Cm, Md, Ac, Br
 
@@ -32,13 +24,9 @@ Cookbook.Recipes.DataStructures:
 
 Cookbook.Recipes.Math:
 
-Cookbook.Recipes.Algorithm: Dt
+Cookbook.Recipes.Algorithm: Ag
 
 Cookbook.Project.Configuration.Configuration: Ac, Md, Lk
-
-Cookbook.Project.Groups.Groups: Md, Lk, Ct
-
-Cookbook.Project.Scribe.Scribe: Cm, Ct, Md, Ac, Lk, Br, St
 
 Cookbook.Project.Preprocess.Preprocess: Rp, Md, Rm
 

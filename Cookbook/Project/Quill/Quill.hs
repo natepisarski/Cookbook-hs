@@ -1,10 +1,9 @@
-module Cookbook.Project.Quill.Quill(tblNames,tables,getTable,lookUp,createTable,removeTable,removeItem,addItem,tableToString,changeItem) where
+module Cookbook.Project.Quill.Quill where 
+
 import qualified Cookbook.Essential.Common         as Cm
 import qualified Cookbook.Essential.Continuous     as Ct
-import qualified Cookbook.Ingredients.Lists.Remove as Rm
 import qualified Cookbook.Ingredients.Lists.Modify as Md
 import qualified Cookbook.Ingredients.Lists.Access as Ac
-import qualified Cookbook.Ingredients.Lists.Splice as Sp
 import qualified Cookbook.Ingredients.Tupples.Look as Lk
 import qualified Cookbook.Recipes.Sanitize         as Sn
 
@@ -13,7 +12,7 @@ data Table = Table {name :: String, info :: [(String,String)]}
 
 -- Parsing
 prepare :: [String] -> String
-prepare = ((flip Sp.splice) ("(*","*)")) . ((flip Sn.blacklist) ['\n']) . Cm.flt
+prepare = ((flip Ct.splice) ("(*","*)")) . ((flip Sn.blacklist) ['\n']) . Cm.flt
 
 tokenize :: [a] -> [(a,a)]
 tokenize []  = []
@@ -24,13 +23,11 @@ tokenize (x:y:xs) = (x,y) : tokenize xs
 tblNames :: String -> [String]
 tblNames x = (Ct.before x '{') : (tail $ Md.surroundedBy (Sn.blacklist x [' '])  ('}','{'))
 
-
 headlessData :: String -> [[String]]
 headlessData x = map ((flip Md.splitOn) ';') $  (Md.surroundedBy x ('{','}'))
 
 tokenLists :: [[String]] -> [[(String,String)]]
 tokenLists x =  ( map (map (\c -> (Ct.before c ':',Ct.after c ':'))) x)
-
 
 -- API functions
 tables :: [String] -> [(String,[(String,String)])]

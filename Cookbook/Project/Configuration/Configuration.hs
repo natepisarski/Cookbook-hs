@@ -1,6 +1,6 @@
 --Cookbook.Project.Configuration.Configuration (Cf)
 -- Cf is a library for reading very simple configuration files.
-module Cookbook.Project.Configuration.Configuration(conf) where
+module Cookbook.Project.Configuration.Configuration where
 import qualified Cookbook.Ingredients.Lists.Modify as Md
 import qualified Cookbook.Ingredients.Tupples.Look as Lk
 

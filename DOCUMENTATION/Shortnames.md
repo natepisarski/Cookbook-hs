@@ -12,19 +12,11 @@ Cookbook.Ingredients.Lists.Access: Ac
 
 Cookbook.Ingredients.Lists.Modify: Md
 
-Cookbook.Ingredients.Lists.Replace: Rp
-
 Cookbook.Ingredients.Lists.Stats: St
-
-Cookbook.Ingredients.Lists.Remove: Rm
 
 Cookbook.Ingredients.Tupples.Assemble: As
 
 Cookbook.Ingredients.Tupples.Look: Lk
-
-Cookbook.Recipes.Detect: Dt
-
-Cookbook.Recipes.DiffStat: Ds
 
 Cookbook.Recipes.Sanitize: Sn
 
@@ -35,10 +27,6 @@ Cookbook.Recipes.Math: Mt
 Cookbook.Recipes.Algorithm: Ag
 
 Cookbook.Project.Configuration.Configuration: Cf
-
-Cookbook.Project.Groups.Groups: Gp
-
-Cookbook.Project.Scribe.Scribe: Sc
 
 Cookbook.Project.Preprocess.Preprocess: Pp
 

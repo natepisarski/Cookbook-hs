@@ -1,6 +1,6 @@
 --Cookbook.Recipes.Math
 --A library for mathematical formulas, parsing, and conversions.
-module Cookbook.Recipes.Math(inc,dec,sqr,avg,stdev,fact) where
+module Cookbook.Recipes.Math where
 
 --Simple, helper arithmetic functions.
 inc :: (Num a) => a -> a
