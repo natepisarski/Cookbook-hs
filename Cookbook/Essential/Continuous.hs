@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleInstances     #-}
+
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 --Cookbook.Essential.Continuous
