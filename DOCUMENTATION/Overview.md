@@ -67,6 +67,8 @@ Cookbook.Recipes.Math (Mt) is a library for performing simple mathematical funct
 ### Algorithm.hs
 Cookbook.Recipes.Algorithm (Ag) is a library for parsing, manipulating, and using Dt's data structures in any fashion.
 
+### WordStatus.hs
+Cookbook.Recipes.WordStats (Ws) is a library for determining the probabibility that two words are the same. Loosely ported from concepts in the tier-1 version of Cookbook (called LibHaskell), it analyzes the frequency of letters and the length of the string to determine an object's 
 Projects
 ==========
 Projects is the final branch of the Cookbook library. Projects is a defintion of standards and an implementation of this defintiion. This means that it can contain "magic characters" which are specific to the set of standards defined. Items in Projects assume a certain structure that make them void to use anywhere else. The exact structure should be defined in a file next to the library with the ".std" extension. By convention, all Project files are inside themselves.
