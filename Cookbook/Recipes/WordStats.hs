@@ -3,7 +3,7 @@ module Cookbook.Recipes.WordStats where
 import qualified Cookbook.Recipes.Math            as Ma
 import qualified Cookbook.Ingredients.Lists.Stats as St
 
-wordscore :: String -> String -> Double
+wordscore :: (Eq a) => [a] -> [a] -> Double
 wordscore a b = (freqScore a b - 0.1) + (0.1 / realToFrac (if diffLen == 0 then 1 else diffLen))
   where diffLen = (abs $(length a) - (length b))
 

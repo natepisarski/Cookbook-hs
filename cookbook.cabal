@@ -48,7 +48,7 @@ cabal-version:       >=1.8
 
 library
   -- Modules exported by the library.
-  exposed-modules:      Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO,   Cookbook.Project.Configuration.Configuration, Cookbook.Project.Preprocess.Preprocess, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble,  Cookbook.Recipes.Sanitize, Cookbook.Recipes.Math,Cookbook.Recipes.DataStructures,Cookbook.Recipes.Algorithm, Cookbook.Project.Quill.Quill, Cookbook.Recipes.WordStats
+  exposed-modules:      Cookbook.Essential.Common, Cookbook.Essential.Continuous, Cookbook.Essential.IO,   Cookbook.Project.Configuration.Configuration, Cookbook.Project.Preprocess.Preprocess, Cookbook.Ingredients.Functional.Break, Cookbook.Ingredients.Lists.Access, Cookbook.Ingredients.Lists.Modify, Cookbook.Ingredients.Lists.Stats, Cookbook.Ingredients.Tupples.Look, Cookbook.Ingredients.Tupples.Assemble,  Cookbook.Recipes.Sanitize, Cookbook.Recipes.Math,Cookbook.Recipes.DataStructures,Cookbook.Recipes.Algorithm, Cookbook.Project.Quill.Quill
   
   -- Modules included in this library but not exported.
   -- other-modules:       
