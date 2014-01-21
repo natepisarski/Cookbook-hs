@@ -12,7 +12,7 @@ makeParams x = (flip zip) (repeat lastPart) $ Md.splitOn firstPart '|'
   where (firstPart:lastPart:[]) = Md.splitOn x '_'
 
 sanitize :: String -> String
-sanitize x = Ct.remove x ('$','$')
+sanitize x = Ct.splice x ('$','$')
 
 gPL :: [String] -> [(String,String)]
 gPL x = Cm.flt $ map makeParams sanitized
