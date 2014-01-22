@@ -54,6 +54,6 @@ toupper = up (['a'..'z'],['A'..'Z'])
 rmlws :: String -> String
 rmlws = ((flip rmleading) ' ')
 
--- | Removes all "symbols" from a string.
+-- | Removes all "symbols" from a string
 rmsymbols :: String -> String
 rmsymbols = ((flip blacklist) (['\\'..'`']))
