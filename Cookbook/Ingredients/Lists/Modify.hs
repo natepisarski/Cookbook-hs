@@ -41,6 +41,7 @@ intersperse :: [a] -> a -> [a]
 intersperse [x] _ = [x]
 intersperse (x:xs) c =  x:c : intersperse xs c
 
+-- | An equivelant to the terenary operator for Haskell.
 (?) :: a -> a -> Bool -> a
 (?) a b c = if c then a else b
 

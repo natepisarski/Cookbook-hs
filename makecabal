@@ -15,5 +15,5 @@ rm *.deb
 rm PACKAGES/DEBIAN/*.deb
 fakeroot dpkg -b PACKAGES/DEBIAN/ PACKAGES/DEBIAN
 dpkg-name PACKAGES/DEBIAN/*.deb
-rm -rf ./dist/
+#rm -rf ./dist/
 ./clean
