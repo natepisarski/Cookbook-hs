@@ -1,4 +1,11 @@
-===Standard for Quill
--
-Quill is a database management tool like Scribe, but only capable of handling tables of untyped data.
--
+standard{
+.: Quill is a database management utility, acting as a replacement of Scribe. It's a foray into whitespace-independent language for managing CRUD systems.;
+}
+
+example{
+.: See this file itself for an example. It's a scribe database. If I showed an example within it, it'd cause problems.
+}
+
+usage{
+.: See Cookbook-app. Quill shouldn't really be used directly.
+}
