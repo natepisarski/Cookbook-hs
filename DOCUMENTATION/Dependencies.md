@@ -24,6 +24,8 @@ Cookbook.Recipes.DataStructures:
 
 Cookbook.Recipes.Math:
 
+Cookbook.Recipes.Cline: Ct, Cm, Md, Ac
+
 Cookbook.Recipes.Algorithm: Ag
 
 Cookbook.Project.Configuration.Configuration: Ac, Md, Lk

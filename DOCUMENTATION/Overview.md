@@ -64,10 +64,13 @@ Cookbook.Recipes.DataStructures (Dt) is a library for organizing ideas into high
 ### Math.hs
 Cookbook.Recipes.Math (Mt) is a library for performing simple mathematical functions and statistical analysis. Simple functions like inc and dec ((+1) (-1)) are included for convenience, and more complex formulae (standard deviation) are included as well.
 
+### Cline.hs
+Cookbook.Recipes.Cline (Cl) is a library for parsing command-line arguments. It currently supports flags and parameterized arguments.
+
 ### Algorithm.hs
 Cookbook.Recipes.Algorithm (Ag) is a library for parsing, manipulating, and using Dt's data structures in any fashion.
 
-### WordStatus.hs
+### WordStats.hs
 Cookbook.Recipes.WordStats (Ws) is a library for determining the probabibility that two words are the same. Loosely ported from concepts in the tier-1 version of Cookbook (called LibHaskell), it analyzes the frequency of letters and the length of the string to determine an object's 
 Projects
 ==========

@@ -42,3 +42,8 @@ fromLast :: ([a] -> [a]) -> [a] -> [a]
 fromLast f c = rev $ f $ rev c
   where rev [] = []
         rev (x:xs) = rev xs ++ [x]
+
+afterX :: (Eq a) => [a] -> a -> Int -> [a]
+afterX (x:xs) c t
+  | t == 0 = x:xs
+  | otherwise = if x == c then afterX xs c (pred t) else afterX xs c t

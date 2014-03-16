@@ -24,7 +24,7 @@ class Continuous list part where
   
   -- | Returns all elements after part.
   after :: list -> part -> list
-  
+
   -- | Returns all elements after part.
   before :: list -> part -> list
   
@@ -91,3 +91,4 @@ instance (Eq a) => Removable [a] [a] where
   remove [] _       = []
   remove x@(a:b) c  = if take (length c) x == c then remove (restart x) c else a : remove b c
     where restart d = Cm.sub d (length c)
+
