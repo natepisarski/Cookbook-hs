@@ -41,10 +41,10 @@ instance (Eq a) => Continuous [a] [a] where
   after x c  = if Ac.isBefore x c then Cm.sub x (length c) else after (tail x) c
 
   before [] _ = []
-  before x c  = if Ac.isBefore x c then [] else (head x) : before (tail x) c
+  before x c  = if Ac.isBefore x c then [] else head x : before (tail x) c
 
   delete [] _ = []
-  delete x c  = if not (x `Ac.contains` c) then x else  (before x c) ++ delete (after x c) c
+  delete x c  = if not (x `Ac.contains` c) then x else before x c ++ delete (after x c) c
 
 -- | Classifies information which can be split by a tupple.
 class Splicable a b where
@@ -53,7 +53,7 @@ class Splicable a b where
   splice :: a -> b -> a
 
 instance (Eq a) => Splicable [a] (a,a) where
-  splice ls (a,b) = before ls a ++ Cm.fromLast ((flip before) b) ls
+  splice ls (a,b) = before ls a ++ Cm.fromLast (`before` b) ls
 
 instance (Eq a) => Splicable [a] ([a],[a]) where
   splice ls (a,b)  = before ls a ++ after (after ls a) b
@@ -73,8 +73,8 @@ instance (Eq a) => Replacable [a] [(a,a)] where
 instance (Eq a) => Replacable [a] ([a],[a]) where
   replace [] _ = []
   replace lst (on,tw) 
-    | (take (length on) lst) == on = tw ++ replace (Cm.sub lst (length on)) (on,tw)
-    | otherwise = (head lst) : replace (tail lst) (on,tw)
+    | take (length on) lst == on = tw ++ replace (Cm.sub lst (length on)) (on,tw)
+    | otherwise = head lst : replace (tail lst) (on,tw)
 
 instance (Eq a) => Replacable [a] [([a],[a])] where
   replace x c = Cm.apply (map (flip replace) c) x

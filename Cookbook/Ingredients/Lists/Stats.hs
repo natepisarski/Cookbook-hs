@@ -27,11 +27,11 @@ mostFrequent x c = take c $ Md.rev (As.assemble  $ frequency x)
 -- | Provides a mathematical score out of 1 based on the similarities between the two words. This is freqScore, but it takes into account length.
 wordscore :: (Eq a) => [a] -> [a] -> Double
 wordscore a b = (freqScore a b - 0.1) + (0.1 / realToFrac (if diffLen == 0 then 1 else diffLen))
-  where diffLen = (abs $(length a) - (length b))
+  where diffLen = abs $ length a - length b
 
 -- | Provides a frequency score between two lists.
 freqScore :: (Eq a) => [a] -> [a] -> Double
-freqScore a b =  (rawFreq / (fromIntegral diffLen))
-  where diffLen = fromIntegral  $ length (if (length (frequency a)) < (length (frequency b)) then (frequency a) else (frequency b))
-        rawFreq = fromIntegral ((sum $ (map (\e -> if e `elem` d then 1 else 0) c)))
-        (c:d:_) = map ((flip mostFrequent) diffLen) [a,b]
+freqScore a b =  rawFreq / fromIntegral diffLen
+  where diffLen = fromIntegral  $ length (frequency (if length (frequency a) < length (frequency b) then a else b))
+        rawFreq = fromIntegral (sum $ map (\e -> if e `elem` d then 1 else 0) c)
+        (c:d:_) = map (`mostFrequent` diffLen) [a,b]

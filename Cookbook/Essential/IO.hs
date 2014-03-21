@@ -21,24 +21,24 @@ import System.Environment
 import System.Directory
 
 -- | Return the lines of a file as a list of Strings.
-filelines :: String -> IO ([String])
+filelines :: String -> IO [String]
 filelines x = fmap lines $ LIO.openFile x LIO.ReadMode >>= SIO.hGetContents
 
 -- | Prompts the user for keyboard input
-prompt :: String -> IO (String)
+prompt :: String -> IO String
 prompt x = do
     putStr x
     LIO.hFlush LIO.stdout
     getLine
 
 -- | Returns the path of a file in the user's home directory. 
-inhome :: String -> LIO.IOMode -> IO (LIO.Handle)
-inhome x c = fmap ((++x).(++"/")) getHomeDirectory >>= (flip LIO.openFile) c
+inhome :: String -> LIO.IOMode -> IO LIO.Handle
+inhome x c = fmap ((++x).(++"/")) getHomeDirectory >>= flip LIO.openFile c
 
 -- | Pure. Returns the file name with the directory truncated.
 filename :: String -> String
-filename = Cm.fromLast ((flip Ct.before) '/')
+filename = Cm.fromLast (`Ct.before` '/')
 
 -- | Pure. Returns the module name. That is, path to the file with the file cut off.
 modulename :: String -> String
-modulename = Cm.fromLast ((flip Ct.after) '/')
+modulename = Cm.fromLast (`Ct.after` '/')

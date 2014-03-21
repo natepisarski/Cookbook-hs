@@ -1,0 +1,15 @@
+standard{
+.: Bottomless is an infinitely recursive database language with list and table literals. It is defined by a list of tables, where a table is a list of key-value pairs. One identifier can be matched with an item, list, or table. Each item in a list can be a table as well. It uses whitespace insignificant parsing, so hardcoding style is up for debate.
+}
+
+example{
+.: "
+table1{
+ a: {a: {b : c;};};
+ b: [1,2,{a: b;},3];
+};
+}
+
+usage{
+See Haddock
+}

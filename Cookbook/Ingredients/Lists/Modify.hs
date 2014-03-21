@@ -10,7 +10,7 @@ Library for modifying data within a list, and transforming lists in certain ways
 module Cookbook.Ingredients.Lists.Modify where
 
 import qualified Cookbook.Essential.Common             as Cm
-import qualified Cookbook.Essential.Continuous         as Cnt
+import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Ingredients.Functional.Break as Br
 import qualified Cookbook.Ingredients.Lists.Access     as Ac
 
@@ -26,11 +26,11 @@ rm x c = filter (/=c) x
 -- | Splits a list on an element, making a list of lists based on the element as a seperator.
 splitOn :: (Eq a) => [a] -> a -> [[a]]
 splitOn [] _ = []
-splitOn x c = if (c `notElem` x) then [x] else (Cnt.before x c) : splitOn (Cnt.after x c) c
+splitOn x c = if c `notElem` x then [x] else Ct.before x c : splitOn (Ct.after x c) c
 
 -- | Returns the data between two items.
 between :: (Eq a) => [a] -> (a,a) -> [a]
-between a (c,d) = Cnt.after (take (last $ Cm.positions a d) a) c
+between a (c,d) = Ct.after (take (last $ Cm.positions a d) a) c
 
 -- | Implementation of between that works on a list of lists, and using Contains rather than elem.
 linesBetween :: (Eq a) => [[a]] -> ([a],[a]) -> [[a]]
@@ -47,27 +47,12 @@ intersperse (x:xs) c =  x:c : intersperse xs c
 
 -- | Returns a list of all elements surrounded by elements. Basically a between which works more than once.
 surroundedBy :: (Eq a) => [a] -> (a,a) -> [[a]] -- Map checks if a or b are not elememts.
-surroundedBy x (a,b) = if or (map (not . (flip elem) x) [a,b]) then [] else recurse
-  where recurse = Cnt.before (Cnt.after x a) b : surroundedBy (Cnt.after x b) (a,b)
-
--- | Returns the entire scope of an lval to an rval, including any internal scopes. For instance, the string \"here{is{a{string}}}\" is not easily parsable, even with Continuities. encompassingSc
-encompassingScope :: (Eq a) => [a] -> (a,a) -> [a]
-encompassingScope [] _ = []
-encompassingScope a (c,d) = helper (Cnt.after a c) (c,d)
-  where
-    helper :: (Eq a) => [a] -> (a,a) -> [a]
-    helper [] _ = []
-    helper (x:xs) (e,f)
-      | x == f = (if Ac.count xs f > 0 then x : helper xs (e,f) else []) -- See MDN2
-      | otherwise = x : helper xs (e,f)
+surroundedBy x (a,b) = if any (not . flip elem x) [a, b] then [] else recurse
+  where recurse = Ct.before (Ct.after x a) b : surroundedBy (Ct.after x b) (a,b)
                     
 -- [MDN1]
 -- This is implemented in Continuous, but is kept here for historical purposes,
 --    or for when Continuous is too heavy-duty for whatever job you are on.
 
 -- [MDN2]
--- At the time of writing this note, this is the largest function in Cookbook.
--- How it works is, encompassingScope passes all elements after the first occurrence
--- of the rval to a helper function, helper, which will only keep collecting if it's
--- in scope. It determines this by checking to see if there are any more rvals left
--- in the list.
+-- encompassingScope has been renamed to "encompassing" and moved to its own module with similar functions, Cookbook.Ingredients.Lists.Encompass

@@ -20,7 +20,7 @@ count x c = sum $ Br.btr (==c)  (1,0) x
 -- | Checks to see if a list is a sub-list of the list.
 contains :: (Eq a) => [a] -> [a] -> Bool
 contains [] _ = False
-contains x c = if part x == c then True else contains (tail x) c
+contains x c = (part x == c) || contains (tail x) c
   where part = take (length c)
 
 -- | QuickSort implementation. Sorts a list of data quickly?
@@ -33,11 +33,11 @@ qsort (x:xs) = lessT ++ [x] ++ greatT
 pull :: [a] -> Int -> Maybe a
 pull _ c | c < 0 = Nothing
 pull [] _  = Nothing
-pull (x:xs) c = if c == 0 then (Just x) else pull xs (c - 1)
+pull (x:xs) c = if c == 0 then Just x else pull xs $ c - 1
 
 -- | Referrential positioning. Find the position of an element in the first list, and return the element from the second list of the same position. In the event that the second list is shorter than the position where the element is found in the first list, it returns the parameter. 
 refpos :: (Eq a) => ([a],[a]) -> a -> a
-refpos (a,b) c = let d = (pull b (Cm.pos a c)) in case d of (Just x) -> x;(Nothing) -> c
+refpos (a,b) c = let d = pull b $ Cm.pos a c in case d of (Just x) -> x;(Nothing) -> c
 
 -- | Test to make sure that all elements in a list are equal to a value.
 areAll :: (Eq a) => [a] -> a -> Bool
