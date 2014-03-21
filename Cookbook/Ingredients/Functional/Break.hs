@@ -14,7 +14,7 @@ module Cookbook.Ingredients.Functional.Break where
 -- | Drop a list until a predicate yields false, returning the false item and the rest of the list.
 removeBreak :: (a -> Bool) -> [a] -> [a]
 removeBreak _ [] = []
-removeBreak f (c:cs) = if not $ f c then (c:cs) else removeBreak f cs
+removeBreak f (c:cs) = if not $ f c then c:cs else removeBreak f cs
 
 -- | Collect a list until a predicate yields false for a value.
 filterBreak :: (a -> Bool) -> [a] -> [a]
@@ -23,7 +23,7 @@ filterBreak f (c:cs) = if not $ f c then [] else c : filterBreak f cs
 
 -- | Returns true if any element in the list yields true for a predicate.
 imbreak :: (a -> Bool) -> [a] -> Bool
-imbreak f = or . map f
+imbreak = any
 
 -- | Conditionally transform a list. If a predicate returns true, use lval. Otherwise, use rval.
 btr :: (a -> Bool) -> (b,b) -> [a] -> [b]

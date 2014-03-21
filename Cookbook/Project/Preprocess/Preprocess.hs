@@ -16,7 +16,7 @@ import qualified Cookbook.Essential.Continuous      as Ct
 
 -- | Binds possibly multiple inputs on one line to one input. General syntax is: inp1|inp2_out
 makeParams :: String -> [(String,String)]
-makeParams x = (flip zip) (repeat lastPart) $ Md.splitOn firstPart '|'
+makeParams x = flip zip (repeat lastPart) $ Md.splitOn firstPart '|'
   where (firstPart:lastPart:[]) = Md.splitOn x '_'
 
 -- | Sanitizes the strings before parsing.
@@ -26,4 +26,4 @@ sanitize x = Ct.splice x ('$','$')
 -- | Generate Program Language. Generates a list of input-output pairs to be replaced.
 gPL :: [String] -> [(String,String)]
 gPL x = Cm.flt $ map makeParams sanitized
-  where sanitized = Ct.remove (map (\c -> if (length c) > 3 then (sanitize c) else "") x) ""
+  where sanitized = Ct.remove (map (\c -> if length c > 3 then sanitize c else "") x) ""

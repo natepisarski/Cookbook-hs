@@ -41,6 +41,9 @@ Cookbook.Ingredients.Lists.Modify (Md) is a library for modifying the contents o
 ### Stats.hs
 Cookbook.Ingredients.Lists.Stats (St) is a library for Statistical analysis on lists. Currently the library has a bunch of code for frequency analysis in there. Any type of statistical test (or test out of place in the other libraries) can be put in Stats.hs
 
+### Encompass.hs
+Cookbook.Ingredients.Lists.Encompass (En) is a library for lexical analyzation. It has the ability to split up strings based on scope, and selectively parse.
+
 Tupples
 --------
 Tupples are a curious case of Haskell data. They are restricted to a length, which can be a pain when defining a library meant to work on Generics. Cookbook.Ingredients.Tupples is meant to work on two-sided tupples, because they are the most common use of tupples. (See: Zip)

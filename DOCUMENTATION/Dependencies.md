@@ -14,9 +14,11 @@ Cookbook.Ingredients.Lists.Modify: Ct, Cm
 
 Cookbook.Ingredients.Lists.Stats: As, Ac, Md, Sn
 
+Cookbook.Ingredients.Lists.Encompass: Ct
+
 Cookbook.Ingredients.Tupples.Assemble: 
 
-Cookbook.Ingredients.Tupples.Look: 
+Cookbook.Ingredients.Tupples.Look:
 
 Cookbook.Recipes.Sanitize: Cm, Md, Ac, Br
 

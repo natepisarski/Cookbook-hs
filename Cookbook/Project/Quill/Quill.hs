@@ -22,7 +22,7 @@ data Table = Table {name :: String, info :: [(String,String)]}
 
 -- | Sanitizes strings for Quill processing. Removes comments, newlines, and flattens it into a string.
 prepare :: [String] -> String
-prepare = ((flip Ct.splice) ("(*","*)")) . ((flip Sn.blacklist) ['\n']) . Cm.flt
+prepare = (`Ct.splice` ("(*","*)")) . (`Sn.blacklist` "\n") . Cm.flt
 
 -- | Splits a list into tupples.
 tokenize :: [a] -> [(a,a)]
@@ -32,15 +32,15 @@ tokenize (x:y:xs) = (x,y) : tokenize xs
 
 -- | Returns the names of all tables in the file.
 tblNames :: String -> [String]
-tblNames x = (Ct.before x '{') : (tail $ Md.surroundedBy (Sn.blacklist x [' '])  ('}','{'))
+tblNames x = Ct.before x '{' : tail (Md.surroundedBy (Sn.blacklist x " ")  ('}','{'))
 
 -- | *Should not be used raw except for API programming. Really shouldn't be included, but too lazy to enumerate top-level declarations for selective export* Returns all entry lines from within tables in database.
 headlessData :: String -> [[String]]
-headlessData x = map ((flip Md.splitOn) ';') $  (Md.surroundedBy x ('{','}'))
+headlessData x = map (`Md.splitOn` ';') $ Md.surroundedBy x ('{','}')
 
 -- | Returns all of the tokens from headlessData.
 tokenLists :: [[String]] -> [[(String,String)]]
-tokenLists x =  ( map (map (\c -> (Ct.before c ':',Ct.after c ':'))) x)
+tokenLists =  map (map (\c -> (Ct.before c ':',Ct.after c ':')))
 
 -- API functions
 -- | Creates a listing of all tables in the file.
@@ -54,7 +54,7 @@ getTable x c = Cm.flt $ Lk.lookList x c
 
 -- | Gets the particular item within a table from a database.
 lookUp :: [(String,[(String,String)])] -> (String,String) -> [String]
-lookUp x (c,d) = ((flip Lk.lookList) d) $ getTable x c
+lookUp x (c,d) = (`Lk.lookList` d) $ getTable x c
 
 -- | Creates a new table within the database.
 createTable :: [(String,[(String,String)])] -> String -> [(String,[(String,String)])]
@@ -82,5 +82,5 @@ changeItem db (tb,it) c = addItem (removeItem db (tb,it)) tb (it,c)
 
 -- | Basically a toString function for Quill tables. It turns data into a String format which can be parsed by the Quill parsing stack.
 tableToString :: (String,[(String,String)]) -> String
-tableToString (x,b) = x ++ "{" ++ (Cm.flt (map detokenize b)) ++ "}"
+tableToString (x,b) = x ++ "{" ++ Cm.flt (map detokenize b) ++ "}"
   where detokenize (a,b) = a ++ ":" ++ b ++ ";"

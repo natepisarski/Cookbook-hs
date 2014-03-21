@@ -25,17 +25,17 @@ rmleading x c = Br.filterBreak (==c) x
 
 -- | Refpos wrapper for two lists, last to first.
 up :: (Eq a) => ([a],[a]) -> [a] -> [a]
-up (a,b) c = map (Ac.refpos (a,b)) c
+up (a,b) = map (Ac.refpos (a,b)) 
 
 -- | Refpos wrapper for two lists, first to last.
 down :: (Eq a) => ([a],[a]) -> [a] -> [a]
-down (a,b) c = map (Ac.refpos (b,a)) c
+down (a,b)  = map (Ac.refpos (b,a)) 
 
 -- | Removes all doubles in the list, turning them into just one occurrence.
 rmdb :: (Eq a) => [a] -> [a]
 rmdb [] = []
 rmdb [x] = [x]
-rmdb (x:y:zs) = if x == y then x: rmdb (Br.removeBreak (== x) (y:zs)) else x : rmdb (y:zs)
+rmdb (x:y:zs) = x: rmdb (if x == y then Br.removeBreak (== x) (y:zs) else y:zs)
 
 -- | Wholly removes doubles from a list.
 rmdbAll :: (Eq a) => [a] -> [a]
@@ -52,8 +52,8 @@ toupper = up (['a'..'z'],['A'..'Z'])
 
 -- | Removes all of the leading whitespace from a string.
 rmlws :: String -> String
-rmlws = ((flip rmleading) ' ')
+rmlws = (`rmleading` ' ')
 
 -- | Removes all "symbols" from a string
 rmsymbols :: String -> String
-rmsymbols = ((flip blacklist) (['\\'..'`']))
+rmsymbols = (`blacklist` ['\\'..'`'])

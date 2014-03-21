@@ -20,16 +20,16 @@ dec = pred
 
 -- | Multiply a number by itself.
 sqr :: (Num a) => a -> a
-sqr x = (x*x)
+sqr x = x*x
 
 -- | Find the average of a group of Fractionals.
-avg :: (Fractional a) => [a] -> a
-avg x = sum x / (realToFrac $ length x)
+avg :: Fractional a => [a] -> a
+avg x = sum x / realToFrac (length x)
 
 -- | Find the standard deviation of a list of data.
 stdev :: (Fractional a, Floating a) => [a] -> a
 stdev x = sqrt $ diffs / realToFrac (length x)
-  where diffs = sum $ [sqr $ a - avg x| a <- x]
+  where diffs = sum [sqr $ a - avg x| a <- x]
 
 -- | Factorial, from 1 to point.
 fact :: (Num a, Enum a) => a -> a

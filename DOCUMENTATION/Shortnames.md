@@ -18,6 +18,8 @@ Cookbook.Ingredients.Tupples.Assemble: As
 
 Cookbook.Ingredients.Tupples.Look: Lk
 
+Cookbook.Ingredients.Lists.Encompass: En
+
 Cookbook.Recipes.Sanitize: Sn
 
 Cookbook.Recipes.DataStructures: Dt

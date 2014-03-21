@@ -14,4 +14,4 @@ import qualified Cookbook.Ingredients.Tupples.Look as Lk
 
 -- | Read the lines of a configuration file, query it, and return an answer to the query.
 conf :: [String] -> String -> String
-conf x c = let configs = [let (d:f:_) = (Md.splitOn y ':') in (d,f)| y <- x, (length y) > 2, ':' `elem` y] in case (Lk.look configs c) of (Just f) -> f;(Nothing) -> []
+conf x c = let configs = [let (d:f:_) = Md.splitOn y ':' in (d,f)| y <- x, length y > 2, ':' `elem` y] in case Lk.look configs c of (Just f) -> f;(Nothing) -> []

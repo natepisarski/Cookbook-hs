@@ -20,7 +20,7 @@ tupsort ((a,n):xs) = lesser ++ [(a,n)] ++ greater
 
 -- | Order a list of tupples by their rval, and collect the lvals as a list.
 assemble :: (Ord b) => [(a,b)] -> [a]
-assemble = (map fst) . tupsort
+assemble = map fst . tupsort
 
 -- | Removes all double-entries from a list of tupples, contingent on just lval.
 rmDb :: (Eq a) =>[(a,b)] -> [(a,b)]

@@ -12,7 +12,7 @@ Library for using tupples as an associative list. It can be thought of like a "m
 module Cookbook.Ingredients.Tupples.Look(look,lookList,swp,rmLook,group) where
 
 -- | Look up an lval in a list of tupples.
-look :: (Eq a) => [(a,b)] -> a -> (Maybe b)
+look :: (Eq a) => [(a,b)] -> a -> Maybe b
 look [] _ = Nothing
 look (a:b) c = if fst a == c then Just (snd a) else look b c
 
