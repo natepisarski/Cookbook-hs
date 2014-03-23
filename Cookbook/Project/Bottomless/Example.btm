@@ -2,3 +2,5 @@ table1{
 a:{a:b,c:d,e:[1,2,{a:b}]},
 b:c
 }
+
+Data representation: 

@@ -14,11 +14,12 @@ Bottomless is an infinitely recursive database flat file language with table and
 import qualified Cookbook.Ingredients.Lists.Access     as Ac
 import qualified Cookbook.Ingredients.Functional.Break as Br
 import qualified Cookbook.Ingredients.Lists.Modify     as Md
+import qualified Cookbook.Ingredients.Lists.Encompass  as En
 import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Essential.Common             as Cm
 
 -- | Elementary data type of tables. Tables map strings (identifiers) with a Btmliteral, which can be an array (list of Btmliterals, usually Items), Items, or more Tables.
-data Btmliteral a = Table (String, [(String, Btmliteral a)]) | Array [Btmliteral a] | Item a deriving (Show,Eq)
+data Btmliteral a = Table (String, [Btmliteral a]) | Array [Btmliteral a] | Item (String,a) deriving (Show,Eq)
 
 -- | Strip C-style comments from the file.
 decomment :: [String] -> [String]
@@ -33,25 +34,22 @@ decomment (x:xs)
 prepare :: [String] -> String
 prepare = Cm.flt . decomment
 
--- Here's where you're getting stuck:
--- You NEED to split up the global tables from the rest of the tables in the parse. This behavior recurses down onto all tables. Make
--- a function that splits outside of a scope, and fix encompassingScope
+-- | Parse the body of a table into a list of Btmliterals.
+ptb :: [String] -> [Btmliteral String]
+ptb [] = []
+ptb (x:xs)
+  | head (afterthe ':') == '{' = Table ((beforethe ':'),ptb (En.notEncompassedSplit (Ct.after x ":{") ('{','}') ',')) : ptb xs
+  | otherwise = Item ((beforethe ':'),(afterthe ':')) : ptb xs
+  where
+    beforethe = Ct.before x
+    afterthe = Ct.after x
 
+-- | Turn a prepared string into a list of btmliterals.
+pat :: String -> [Btmliteral String]
+pat x
+  | '{' `elem` x = Table (Ct.before x '{',ptb (En.notEncompassedSplit (En.encompassing x ('{','}')) ('{','}') ',')) : pat (En.afterEncompassing x ('{','}'))
+  | otherwise = []
 
-
-
-
-{-
--- String will look like: tabName{a:b,b:[a,b,c,d],d:{a:b}}
--- | Parse a table within the file.
-parseTable :: String -> Btmliteral
-parseTable x = Table ((Ct.before x '{'),parse Ct.after x '{')
-
--- | General parsing function
-parse :: String -> [Btmliteral]
-parse x
-  | head (afterthe ':') = '{' = paraseTable $ afterthe ':' : parse $ nextScope x -- Figure out nextScope
-  | head (afterthe ':') = '[' = parseArray $ encompassingScope x '[' '
-  | otherwise =
-    where afterthe = Ct.after x
--}
+-- | Turn the contents of a file into a list of Btmliterals.
+pfile :: [String] -> [Btmliteral String]
+pfile = pat . prepare
