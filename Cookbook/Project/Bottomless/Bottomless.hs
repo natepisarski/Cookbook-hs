@@ -19,8 +19,9 @@ import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Essential.Common             as Cm
 
 -- | Elementary data type of tables. Tables map strings (identifiers) with a Btmliteral, which can be an array (list of Btmliterals, usually Items), Items, or more Tables.
-data Btmliteral a = Table (String, [Btmliteral a]) | Array [Btmliteral a] | Item (String,a) deriving (Show,Eq)
+data Btmliteral a = Table (String, [Btmliteral a]) Item (String,a) deriving (Show,Eq)
 
+-- General parsing functions
 -- | Strip C-style comments from the file.
 decomment :: [String] -> [String]
 decomment [] = []
@@ -34,6 +35,7 @@ decomment (x:xs)
 prepare :: [String] -> String
 prepare = Cm.flt . decomment
 
+-- Project-specific parsing functions
 -- | Parse the body of a table into a list of Btmliterals.
 ptb :: [String] -> [Btmliteral String]
 ptb [] = []
@@ -53,3 +55,18 @@ pat x
 -- | Turn the contents of a file into a list of Btmliterals.
 pfile :: [String] -> [Btmliteral String]
 pfile = pat . prepare
+
+-- Base table functions (non-recursive)
+itLook :: [Btmliteral String] -> String -> Maybe (Btmliteral String)
+itLook [] _ = Nothing
+itLook (x:xs) y = case x of
+  (Table a b) -> if a == y then Just x else itLook xs y
+  (Item a)    -> if a == y then Just x else itLook xs y
+  _           -> itLook xs y
+
+addItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
+removeItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
+changeItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
+changeItem h k = case itLook of
+  (Just a) -> 
+  Nothing
