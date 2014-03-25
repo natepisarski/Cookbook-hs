@@ -1,6 +1,6 @@
 table1{
-a:{a:b,c:d,e:[1,2,{a:b}]},
+a:{a:b,c:d,e:{a:b,c:d}},
 b:c
 }
 
-Data representation: 
+Data representation: Table ("table1",Item (a,Table ("a",[Item ('a','b'),Item ('c','d'),Table ("e",[Item ('a','b'),('c','d')])])))

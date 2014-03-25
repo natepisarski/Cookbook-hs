@@ -19,7 +19,7 @@ import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Essential.Common             as Cm
 
 -- | Elementary data type of tables. Tables map strings (identifiers) with a Btmliteral, which can be an array (list of Btmliterals, usually Items), Items, or more Tables.
-data Btmliteral a = Table (String, [Btmliteral a]) Item (String,a) deriving (Show,Eq)
+data Btmliteral a = Table (String, [Btmliteral a]) |  Item (String,a) deriving (Show,Eq)
 
 -- General parsing functions
 -- | Strip C-style comments from the file.
@@ -52,6 +52,11 @@ pat x
   | '{' `elem` x = Table (Ct.before x '{',ptb (En.notEncompassedSplit (En.encompassing x ('{','}')) ('{','}') ',')) : pat (En.afterEncompassing x ('{','}'))
   | otherwise = []
 
+items :: [Btmliteral String] -> [String]
+items (x:xs) = case x of
+  (Table (a,b)) -> a : items xs
+  (Item (a,b))  -> a : items xs
+
 -- | Turn the contents of a file into a list of Btmliterals.
 pfile :: [String] -> [Btmliteral String]
 pfile = pat . prepare
@@ -60,13 +65,22 @@ pfile = pat . prepare
 itLook :: [Btmliteral String] -> String -> Maybe (Btmliteral String)
 itLook [] _ = Nothing
 itLook (x:xs) y = case x of
-  (Table a b) -> if a == y then Just x else itLook xs y
-  (Item a)    -> if a == y then Just x else itLook xs y
-  _           -> itLook xs y
+  (Table (a,b)) -> if a == y then Just x else itLook xs y
+  (Item (a,_))    -> if a == y then Just x else itLook xs y
 
 addItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
+addItem x c = c : x
+
 removeItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
-changeItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
-changeItem h k = case itLook of
-  (Just a) -> 
-  Nothing
+removeItem [] _ = [] -- Bug here, should check to see if it is equal. Make a typeclass for Tabular.
+removeItem (x:xs) c
+  | (head $ items [c]) `notElem` items (x:xs) = (x:xs)
+  | otherwise = case c of   (Table (a,b)) -> if a == (head $ items [c]) then xs else removeItem xs c
+                            (Item (a,b))  -> if a == (head $ items [c]) then xs else removeItem xs c
+
+
+changeItem :: [Btmliteral String] -> (Btmliteral String,Btmliteral String) -> [Btmliteral String]
+changeItem h (k,e) = case itLook h (head $ items [k]) of
+  (Just a) -> case e of ((Item (c,_)))  -> addItem (removeItem h k) e
+                        (Table (c,_)) -> addItem (removeItem h k) e
+  Nothing -> h
