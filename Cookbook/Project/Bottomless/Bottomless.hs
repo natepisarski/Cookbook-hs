@@ -27,8 +27,8 @@ decomment :: [String] -> [String]
 decomment [] = []
 decomment (x:xs)
   | x `Ac.contains` "//" = Ct.before x "//"   : decomment xs -- Fixme #1 Dangerous comment stripping
-  | x `Ac.contains` "/*" = Ct.before x "/*" : (decomment $ Br.removeBreak (\c -> not $ c `Ac.contains` "*/") xs)
-  | x `Ac.contains` "*/" = decomment $ (Ct.after x "*/") : xs
+  | x `Ac.contains` "/*" = Ct.before x "/*" : decomment (Br.removeBreak (\c -> not $ c `Ac.contains` "*/") xs)
+  | x `Ac.contains` "*/" = decomment $ Ct.after x "*/" : xs
   | otherwise = x: decomment xs
 
 -- | Preprocess lines of a file for parsing.
@@ -40,8 +40,8 @@ prepare = Cm.flt . decomment
 ptb :: [String] -> [Btmliteral String]
 ptb [] = []
 ptb (x:xs)
-  | head (afterthe ':') == '{' = Table ((beforethe ':'),ptb (En.notEncompassedSplit (Ct.after x ":{") ('{','}') ',')) : ptb xs
-  | otherwise = Item ((beforethe ':'),(afterthe ':')) : ptb xs
+  | head (afterthe ':') == '{' = Table (beforethe ':',ptb (En.notEncompassedSplit (Ct.after x ":{") ('{','}') ',')) : ptb xs
+  | otherwise = Item (beforethe ':',afterthe ':') : ptb xs
   where
     beforethe = Ct.before x
     afterthe = Ct.after x
@@ -52,35 +52,42 @@ pat x
   | '{' `elem` x = Table (Ct.before x '{',ptb (En.notEncompassedSplit (En.encompassing x ('{','}')) ('{','}') ',')) : pat (En.afterEncompassing x ('{','}'))
   | otherwise = []
 
+-- | Get the items from the root level of a btmLiteral.
 items :: [Btmliteral String] -> [String]
 items (x:xs) = case x of
   (Table (a,b)) -> a : items xs
   (Item (a,b))  -> a : items xs
 
+-- | Item helper. Gets the first item.
+itH :: Btmliteral String -> String
+itH x = head $ items [x]
+
 -- | Turn the contents of a file into a list of Btmliterals.
 pfile :: [String] -> [Btmliteral String]
 pfile = pat . prepare
 
--- Base table functions (non-recursive)
+-- | Look an item up from the root-level tables.
 itLook :: [Btmliteral String] -> String -> Maybe (Btmliteral String)
 itLook [] _ = Nothing
 itLook (x:xs) y = case x of
-  (Table (a,b)) -> if a == y then Just x else itLook xs y
+  (Table (a,b))   -> if a == y then Just x else itLook xs y
   (Item (a,_))    -> if a == y then Just x else itLook xs y
 
+-- | Add an item to the root of a Btmliteral.
 addItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
 addItem x c = c : x
 
+-- | Remove an item to the root of a Btmliteral.
 removeItem :: [Btmliteral String] -> Btmliteral String -> [Btmliteral String]
 removeItem [] _ = [] -- Bug here, should check to see if it is equal. Make a typeclass for Tabular.
 removeItem (x:xs) c
-  | (head $ items [c]) `notElem` items (x:xs) = (x:xs)
-  | otherwise = case c of   (Table (a,b)) -> if a == (head $ items [c]) then xs else removeItem xs c
-                            (Item (a,b))  -> if a == (head $ items [c]) then xs else removeItem xs c
+  | itH c `notElem` items (x:xs) = x:xs
+  | otherwise = case c of   (Table (a,b)) -> if a == itH c then xs else removeItem xs c
+                            (Item (a,b))  -> if a == itH c then xs else removeItem xs c
 
-
+-- | Change an item inside of the root layer.
 changeItem :: [Btmliteral String] -> (Btmliteral String,Btmliteral String) -> [Btmliteral String]
-changeItem h (k,e) = case itLook h (head $ items [k]) of
-  (Just a) -> case e of ((Item (c,_)))  -> addItem (removeItem h k) e
+changeItem h (k,e) = case itLook h $ itH k of
+  (Just a) -> case e of (Item (c,_))  -> addItem (removeItem h k) e
                         (Table (c,_)) -> addItem (removeItem h k) e
   Nothing -> h
