@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Cookbook-hs by natepisarski</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Cookbook-hs</h1>
+          <h2>Haskell (and lisp!) is served. </h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/natepisarski/Cookbook-hs/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/natepisarski/Cookbook-hs/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/natepisarski/Cookbook-hs" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>
+<a name="cookbook-library" class="anchor" href="#cookbook-library"><span class="octicon octicon-link"></span></a>Cookbook Library</h2>
+
+<p>Cookbook is a tiered general-purpose library. It builds upon itself to create an extensive pool of functions to choose from. Cookbook contains functions ranging from highly generic (i.e, ([a] -&gt; a -&gt; [a] and [a] -&gt; [a] -&gt; [a] working on the same function) to very specific, like Quill2, the database language API with type safety.</p>
+
+<p>Sound interesting? Here's some examples.</p>
+
+<p><code>after "field:item" ':'</code> =&gt; <code>"item"</code> </p>
+
+<p><code>after "field:item" "d:" =&gt;</code>"item"` </p>
+
+<p><code>splitOn "field,field,field" '.'</code> =&gt; <code>["field","field","field"]</code> </p>
+
+<p><code>contains "field" 'e'</code> =&gt; <code>True</code>  </p>
+
+<p><code>encompassing "field{field{field{x}}}" ('{','}')</code> =&gt; <code>"field{field{x}}"</code></p>
+
+<p><code>import Cookbook.*.Meta</code> =&gt; Import all modules in that branch</p>
+
+<h2>
+<a name="cookbook-map" class="anchor" href="#cookbook-map"><span class="octicon octicon-link"></span></a>Cookbook Map</h2>
+
+<ul>
+<li>Meta</li>
+<li>Essential
+
+<ul>
+<li>Meta</li>
+<li>Common.hs     (Cm)</li>
+<li>Continuous.hs (Ct)</li>
+<li>IO.hs         (Io)</li>
+</ul>
+</li>
+<li>Ingredients</li>
+<li>Meta
+
+<ul>
+<li>Functional
+
+<ul>
+<li>Meta
+
+<ul>
+<li>Break.hs (Br)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lists
+
+<ul>
+<li>Meta
+
+<ul>
+<li>Access.hs    (Ac)</li>
+<li>Encompass.hs (En)</li>
+<li>Modify.hs    (Md)</li>
+<li>Stats.hs     (St)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tupples
+
+<ul>
+<li>Meta
+
+<ul>
+<li>Assemble.hs (As)</li>
+<li>Look.hs     (Lk)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Recipes
+
+<ul>
+<li>Meta</li>
+<li>Algorithm.hs      (Ag)</li>
+<li>Cline.hs          (Cl)</li>
+<li>DataStructures.hs (Ds)</li>
+<li>Math.hs           (Ma)</li>
+<li>Sanitize.hs       (Sn)</li>
+<li>WordStats.hs      (Ws)</li>
+</ul>
+</li>
+<li>Project
+
+<ul>
+<li>Configuration
+
+<ul>
+<li>Configuration.hs (Cf)</li>
+<li>Configuration.std</li>
+</ul>
+</li>
+<li>Preprocess
+
+<ul>
+<li>Preprocess.hs (Pp)</li>
+<li>Preprocess.std</li>
+</ul>
+</li>
+<li>Quill
+
+<ul>
+<li>Quill.hs (Qu)</li>
+<li>Quill2
+
+<ul>
+<li>Meta
+
+<ul>
+<li>Q2Prelude (Q2p)</li>
+<li>Q2Parse   (Q2r)</li>
+<li>Q2Api     (Q2A)</li>
+<li>Q2Io      (Q2Io)</li>
+<li>Q2.std</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Quill.std</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h2>
+<a name="ports" class="anchor" href="#ports"><span class="octicon octicon-link"></span></a>Ports</h2>
+
+<p>Cookbook has active ports to D and Lisp, which in the next development cycle will be brought to the same level of Cookbook-hs.</p>
+
+<p>Cookbook-lisp: <a href="https://github.com/natepisarski/cookbook-lisp">Github</a><br>
+Cookbook-D: <a href="https://github.com/natepisarski/cookbook-d">Github</a> </p>
+
+<h2>
+<a name="get-cookbook" class="anchor" href="#get-cookbook"><span class="octicon octicon-link"></span></a>Get Cookbook</h2>
+
+<p>Cookbook can be installed easiest via the <strong>cabal</strong> command-line program. <a href="http://hackage.haskell.org/package/cookbook">Hackage page</a></p>
+
+<p><code>cabal install cookbook</code></p>
+
+<p>It has a Debian package wrapper in the repository that will call the cabal program for you, for easy installation via gdebi or a similar program. If none of these options work, it can be installed manually by the clone URL.</p>
+
+<h3>
+<a name="clone-cookbook" class="anchor" href="#clone-cookbook"><span class="octicon octicon-link"></span></a>Clone cookbook</h3>
+
+<p><code>git clone https://github.com/natepisarski/cookbook-hs</code> </p>
+        </section>
+
+        <footer>
+          Cookbook-hs is maintained by <a href="https://github.com/natepisarski">natepisarski</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
