@@ -1,0 +1,12 @@
+standard{
+.: Configuration is a lightweight configuration file syntax. The lval is palced on the left of a colon, and the rval on the right.;
+}
+
+example{
+.: name:joe;
+}
+
+usage{
+use: (conf c "name");
+result: joe :: String;
+}
