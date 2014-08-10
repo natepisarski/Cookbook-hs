@@ -21,3 +21,52 @@
   (major1) == 0 && (major2) <  3 || \
   (major1) == 0 && (major2) == 3 && (minor) <= 2)
 
+/* tool gcc-4.9.1 */
+#define TOOL_VERSION_gcc "4.9.1"
+#define MIN_TOOL_VERSION_gcc(major1,major2,minor) (\
+  (major1) <  4 || \
+  (major1) == 4 && (major2) <  9 || \
+  (major1) == 4 && (major2) == 9 && (minor) <= 1)
+
+/* tool ghc-7.8.3 */
+#define TOOL_VERSION_ghc "7.8.3"
+#define MIN_TOOL_VERSION_ghc(major1,major2,minor) (\
+  (major1) <  7 || \
+  (major1) == 7 && (major2) <  8 || \
+  (major1) == 7 && (major2) == 8 && (minor) <= 3)
+
+/* tool ghc-pkg-7.8.3 */
+#define TOOL_VERSION_ghc_pkg "7.8.3"
+#define MIN_TOOL_VERSION_ghc_pkg(major1,major2,minor) (\
+  (major1) <  7 || \
+  (major1) == 7 && (major2) <  8 || \
+  (major1) == 7 && (major2) == 8 && (minor) <= 3)
+
+/* tool haddock-2.14.3 */
+#define TOOL_VERSION_haddock "2.14.3"
+#define MIN_TOOL_VERSION_haddock(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  14 || \
+  (major1) == 2 && (major2) == 14 && (minor) <= 3)
+
+/* tool hpc-0.67 */
+#define TOOL_VERSION_hpc "0.67"
+#define MIN_TOOL_VERSION_hpc(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  67 || \
+  (major1) == 0 && (major2) == 67 && (minor) <= 0)
+
+/* tool hsc2hs-0.67 */
+#define TOOL_VERSION_hsc2hs "0.67"
+#define MIN_TOOL_VERSION_hsc2hs(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  67 || \
+  (major1) == 0 && (major2) == 67 && (minor) <= 0)
+
+/* tool pkg-config-0.28 */
+#define TOOL_VERSION_pkg_config "0.28"
+#define MIN_TOOL_VERSION_pkg_config(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  28 || \
+  (major1) == 0 && (major2) == 28 && (minor) <= 0)
+
