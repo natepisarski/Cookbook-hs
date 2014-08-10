@@ -51,7 +51,7 @@ library
             Cookbook.Project.Quill2.Meta
                         
             
-  build-depends:       base ==4.6.*, directory, strict
+  build-depends:       base ==4.*, directory, strict
 source-repository head
   type: git
   location: https://github.com/natepisarski/Cookbook-hs
