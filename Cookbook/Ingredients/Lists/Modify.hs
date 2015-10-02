@@ -9,7 +9,6 @@ Library for modifying data within a list, and transforming lists in certain ways
 -}
 module Cookbook.Ingredients.Lists.Modify where
 
-import qualified Cookbook.Essential.Common             as Cm
 import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Ingredients.Functional.Break as Br
 import qualified Cookbook.Ingredients.Lists.Access     as Ac

@@ -21,7 +21,7 @@ encompassing (x:xs) (a,b) = helper (x:xs) 0
     helper [] _  = []
     helper (y:ys) e
       | y == b && e <= 1 = []
-      | y == a && a == b = if e == 0 then [] else condInp $ helper ys (e + 1)
+      | y == a && a == b = if e == 0 then [] else condInp $ helper ys ((e :: Integer )+ 1)
       | y == a = condInp $ helper ys (e + 1)
       | y == b = y : helper ys (e - 1)
       | otherwise = condInp $ helper ys e
@@ -44,21 +44,6 @@ splitEncompassing a (b,c) = filter (\x -> x /= []) (helper a (b,c))
       | not $  f `elem` e && g `elem` e = [e]
       | otherwise = beforeEncompassing e (f,g) : splitEncompassing (afterEncompassing e (f,g)) (f,g)
 
--- | There is a long story behind this function, and why it sucks. See ENN1 in the source.
-notEncompassedSplit :: (Eq a) => [a] -> (a,a) -> a -> [[a]]
-notEncompassedSplit [] _ _ = [] -- "b{c,d},e,{f:g,e:h}"
-notEncompassedSplit ls (sp1,sp2) sp = toGaps $ helper ls 0
-  where
-    helper [] _ = []
-    helper (x:xs) c
-      | x == sp1 && c >= 0 = (sp1: encompassing (x:xs) (sp1,sp2)) : helper (afterEncompassing xs (sp1,sp2)) (c + 1)
-      | x == sp2 && c <= 0 = [x] :  helper xs (c - 1)
-      | x == sp1 = [x] : helper xs (c+1)
-      | x == sp2 = [x] : helper xs (c - 1)
-      | x == sp && c > 0 = [x] : helper xs c
-      | x == sp && c <= 0 = [] : helper xs c
-      | otherwise = [x] : helper xs c
-
 toGaps :: (Eq a) => [[a]] -> [[a]]
 toGaps [] = []
 toGaps x
@@ -70,13 +55,3 @@ gatherEncompassing :: (Eq a) => [a] -> (a,a) -> [[a]]
 gatherEncompassing a (b,c) 
   | not $ b `elem` a && c `elem` a = []
   | otherwise = encompassing a (b,c) : gatherEncompassing (afterEncompassing a (b,c)) (b,c)
-
--- [ENN1]
--- This function is terrible. Bloody AWFUL. So, why include it? Because it works.
--- the implementation of the function is hard to rework, so unfortunately it doesn't
--- get much better than this. I've tried rereading it time and time again, and the
--- details of how it works confuse me. Prior to making the function, I spent
--- more than a month thinking about how it should work. After that didn't work
--- I began to change variables and behaviors in a fit of rage, and it started
--- to work. And don't question the helper function either. This is as good
--- as it gets, ladies and gentlemen.

@@ -1,6 +1,6 @@
 {- |
    Module      :   Cookbook.Essential.Common
-   Copyright   :   (c) 2014 by Nate Pisarski
+   Copyright   :   (c) 2015 by Nate Pisarski
    License     :   BSD3
    Maintainer  :   nathanpisarski@gmail.com
    Stability   :   Stable
@@ -15,8 +15,8 @@ module Cookbook.Essential.Common where
 sub :: (Eq a) => [a] -> Int -> [a]
 sub [] _ = []
 sub x 0 = x
-sub (x:xs) c = sub xs (c - 1)
-
+sub (_:xs) c = sub xs (c - 1)
+  
 -- | Find the occurrences of an element in a list. 
 positions :: (Eq a) => [a] -> a -> [Int]
 positions x c = let y = zip x [0..(length x)] in find y

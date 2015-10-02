@@ -16,7 +16,6 @@ import qualified Cookbook.Essential.Continuous     as Ct
 import qualified Cookbook.Ingredients.Lists.Access as Ac
 
 import Cookbook.Project.Quill2.Q2Prelude
-import Cookbook.Project.Quill2.Q2Parse
 
 -- | Get the name of a Quill.
 getQuillName :: Quill -> String
@@ -37,13 +36,11 @@ getQuill (x:xs) c
 -- | Look up the value of a Quill TABLE. Will produce an error on a list.
 lookUp :: [Quill] -> (String, String) -> QuillStatus String
 lookUp x (a,b) = case getQuill x a of
-  (QuillSuccess (c,d)) -> case d of
-    (List f) -> error "Cannot look up the value of a list."
+  (QuillSuccess (_,d)) -> case d of
+    (List _) -> error "Cannot look up the value of a list."
     (Table f) -> let c = Lk.lookList f b in if null c|| (length c > 1) then QuillMissing b else QuillSuccess $ head c
-
   (QuillMissing _)  -> QuillMissing a
   (QuillMultiple _) -> QuillMultiple a
-    where multipleInnerError = QuillMultiple b
 
 -- | Remove a quill from the database by name.
 removeQuill :: [Quill] -> String -> [Quill]
@@ -75,12 +72,12 @@ addItem x qa = case getQuill x a of
     (List d)  -> case qa of
       (AList (_,b)) -> QuillSuccess $ (y, List (b:d)) : removeQuill x a
       (ATable _) -> error $ "Type Mismatch! Attempted to add Table type to List in table " ++ show qa
-  QuillMultiple v -> QuillMultiple a
-  QuillMissing  v -> QuillMissing a --M
+  QuillMultiple _ -> QuillMultiple a
+  QuillMissing  _ -> QuillMissing a --M
   where
     a = case qa of
-      (ATable (g,b,c)) -> g
-      (AList  (g,b))   -> g
+      (ATable (g,_,_)) -> g
+      (AList  (g,_))   -> g
 
 -- | Map a Quill function.
 qMap :: QuillStatus [Quill] -> ([Quill] -> QuillStatus [Quill]) -> QuillStatus [Quill]
@@ -91,7 +88,7 @@ qMap c f = case c of
 -- | Change an item within the database using a Quill addition. Wrapper of addItem and removeItem.
 changeItem :: [Quill] -> QuillAddition -> QuillStatus [Quill]
 changeItem x y = case y of
-                      (ATable (a,b,c)) ->  qMap (removeItem x (a,b)) (`addItem` y)
+                      (ATable (a,b,_)) ->  qMap (removeItem x (a,b)) (`addItem` y)
                       (AList  (a,b))   ->  qMap (removeItem x (a,b)) (`addItem` y)
                  
 

@@ -17,7 +17,6 @@ import qualified Cookbook.Essential.IO as Io
 import Cookbook.Project.Quill2.Q2Prelude
 import Cookbook.Project.Quill2.Q2Parse
 
-import System.IO
 
 -- | Read a Quill database from a file.
 fromFile :: FilePath ->  IO [Quill]

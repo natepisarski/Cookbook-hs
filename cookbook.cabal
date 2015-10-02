@@ -3,7 +3,7 @@ name:                cookbook
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             3.0.0.0
+version:             3.0.0.1
 synopsis:    Tiered general-purpose libraries with domain-specific applications.
 description:        Cookbook is a line of libraries covering a wide variety of Haskell applications. Every application that I make, I add its functions to Cookbook, turning Cookbook into an all-encompassing general-purpose library over time. The claim-to-fame for the library is its use of overloaded typeclasses, called "Continuities". 
 license:             BSD3

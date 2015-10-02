@@ -10,8 +10,7 @@ Library for accessing the information from a list. Modify and Access are six in 
 module Cookbook.Ingredients.Lists.Access where
 
 import qualified Cookbook.Ingredients.Functional.Break as Br
-import qualified Cookbook.Ingredients.Tupples.Assemble as As
-import qualified Cookbook.Essential.Common             as Cm
+import qualified Cookbook.Essential.Common as Cm
 
 -- | Counts the occurrences an element has within a list.
 count :: (Eq a) => [a] -> a -> Int

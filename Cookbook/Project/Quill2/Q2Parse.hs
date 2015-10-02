@@ -10,7 +10,6 @@ Q2Parse is the "engine" of Quill2. It is able to turn a string (or a list of the
 
 module Cookbook.Project.Quill2.Q2Parse where
 
-import qualified Cookbook.Essential.Common         as Cm
 import qualified Cookbook.Essential.Continuous     as Ct
 
 import qualified Cookbook.Ingredients.Lists.Modify    as Md
@@ -35,7 +34,7 @@ pTable x = typ
     typ  = (name,if Ct.before x '{' `Ac.contains` "table" then Table (parseTables body) else List body) -- Determines what kind of type the Quill is.
     body = Md.splitOn (En.encompassing x ('{','}')) ';' 
     quoted y = if ('`','\'') `Ac.surrounds` y then En.encompassing x ('`','\'') else Ct.remove y ' ' -- Whole String encapsulation
-    parseTables = map (\x -> (quoted $ Ct.before x ':', Ct.after x ':'))
+    parseTables = map (\y -> (quoted $ Ct.before y ':', Ct.after y ':'))
 
 -- | Turn the lines of a file into a list of tables, AKA a Database.
 pFile :: [String] -> [Quill]

@@ -18,7 +18,7 @@ look (a:b) c = if fst a == c then Just (snd a) else look b c
 
 -- | Returns all elements where the lval matches the element.
 lookList :: (Eq a) => [(a,b)] -> a -> [b]
-lookList a b = map snd $ filter (\(c,d) -> c == b) a
+lookList a b = map snd $ filter (\(c,_) -> c == b) a
 
 -- | Swap the lval with the rval, and vice-versa.
 swp :: (a,b) -> (b,a)
@@ -32,5 +32,5 @@ rmLook ((a,b):cs) d = if a == d then cs else (a,b) : rmLook cs d
 -- | Turns a list into as many double-tupples (a,a) as it can, dropping items from uneven lists.
 group :: [a] -> [(a,a)]
 group [] = []
-group [x] = []
+group [_] = []
 group (x:y:z) = (x,y) : group z

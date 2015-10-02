@@ -14,12 +14,12 @@ catchIO = Exception.catch
 
 
 version :: Version
-version = Version {versionBranch = [3,0,0,0], versionTags = []}
+version = Version {versionBranch = [3,0,0,1], versionTags = []}
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/nate/.cabal/bin"
-libdir     = "/home/nate/.cabal/lib/x86_64-linux-ghc-7.8.3/cookbook-3.0.0.0"
-datadir    = "/home/nate/.cabal/share/x86_64-linux-ghc-7.8.3/cookbook-3.0.0.0"
+libdir     = "/home/nate/.cabal/lib/x86_64-linux-ghc-7.6.3/cookbook-3.0.0.1"
+datadir    = "/home/nate/.cabal/share/x86_64-linux-ghc-7.6.3/cookbook-3.0.0.1"
 libexecdir = "/home/nate/.cabal/libexec"
 sysconfdir = "/home/nate/.cabal/etc"
 
