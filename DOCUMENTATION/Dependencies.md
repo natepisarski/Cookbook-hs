@@ -26,7 +26,7 @@ Cookbook.Recipes.DataStructures:
 
 Cookbook.Recipes.Math:
 
-Cookbook.Recipes.Cline: Ct, Cm, Md, Ac
+Cookbook.Recipes.Cline: Ct, Cm, Md, Ac, Sn
 
 Cookbook.Recipes.Algorithm: Ag
 
@@ -34,6 +34,10 @@ Cookbook.Project.Configuration.Configuration: Ac, Md, Lk
 
 Cookbook.Project.Preprocess.Preprocess: Rp, Md, Rm
 
-Cookbook.Project.Quill.Quill: Ct, Md, Rm, Cm, Lk, Sn
+Cookbook.Project.Quill2.Quill2Prelude: 
 
-Cookbook.Project.Bottomless.Bottomless: Ac, Br, Md, En, Ct, Cm
+Cookbook.Project.Quill2.Quill2Parse: Cm, Ct, Md, Ac, En, Q2p
+
+Cookbook.Project.Quill2.Quill2Api: Lk, Cm, Ct, Ac, Q2p
+
+Cookbook.Project.Quill2.Quill2Io: Q2p, Q2r

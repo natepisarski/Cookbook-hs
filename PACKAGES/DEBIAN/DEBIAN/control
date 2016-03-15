@@ -1,8 +1,8 @@
 Package: libghc-cookbook
-Version: 2.1.2.0
+Version: 3.0.0.1
 Architecture: all
 Maintainer: Nate Pisarski <nathanpisarski@gmail.com>
-Installed-Size: 1500
+Installed-Size: 3500
 Depends: ghc, cabal-install
 Priority: optional
 Description: Install the cookbook library to your cabal directory.

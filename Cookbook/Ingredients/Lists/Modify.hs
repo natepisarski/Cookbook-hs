@@ -9,7 +9,6 @@ Library for modifying data within a list, and transforming lists in certain ways
 -}
 module Cookbook.Ingredients.Lists.Modify where
 
-import qualified Cookbook.Essential.Common             as Cm
 import qualified Cookbook.Essential.Continuous         as Ct
 import qualified Cookbook.Ingredients.Functional.Break as Br
 import qualified Cookbook.Ingredients.Lists.Access     as Ac
@@ -27,10 +26,6 @@ rm x c = filter (/=c) x
 splitOn :: (Eq a) => [a] -> a -> [[a]]
 splitOn [] _ = []
 splitOn x c = if c `notElem` x then [x] else Ct.before x c : splitOn (Ct.after x c) c
-
--- | Returns the data between two items.
-between :: (Eq a) => [a] -> (a,a) -> [a]
-between a (c,d) = Ct.after (take (last $ Cm.positions a d) a) c
 
 -- | Implementation of between that works on a list of lists, and using Contains rather than elem.
 linesBetween :: (Eq a) => [[a]] -> ([a],[a]) -> [[a]]
@@ -52,7 +47,9 @@ surroundedBy x (a,b) = if any (not . flip elem x) [a, b] then [] else recurse
                     
 -- [MDN1]
 -- This is implemented in Continuous, but is kept here for historical purposes,
---    or for when Continuous is too heavy-duty for whatever job you are on.
+--    or for when Continuous is too heavy-duty for whatever job you are on. Also,
+--    Continuous makes use of non-portable pragmas, and the rm implementation here
+--    is just pure haskell.
 
 -- [MDN2]
 -- encompassingScope has been renamed to "encompassing" and moved to its own module with similar functions, Cookbook.Ingredients.Lists.Encompass

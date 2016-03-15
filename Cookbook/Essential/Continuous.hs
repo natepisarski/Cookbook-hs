@@ -1,5 +1,4 @@
 {-# LANGUAGE FlexibleInstances     #-}
-
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 {- |
@@ -16,12 +15,12 @@ Somewhat abuses FlexibleInstance and Typeclasses.
 module Cookbook.Essential.Continuous where
 
 import qualified Cookbook.Essential.Common             as Cm
-import qualified Cookbook.Ingredients.Functional.Break as Br
 import qualified Cookbook.Ingredients.Lists.Access     as Ac
+import qualified Cookbook.Ingredients.Functional.Break as Br
 
 -- | Classifies items that can be modified by either a list or item.
 class Continuous list part where
-  
+
   -- | Returns all elements after part.
   after :: list -> part -> list
 
@@ -35,7 +34,7 @@ instance (Eq a) => Continuous [a] a where
   after x c   = tail $ Br.removeBreak (/=c) x
   before x c  = Br.filterBreak        (/=c) x
   delete x c  = filter                (/=c) x
-  
+
 instance (Eq a) => Continuous [a] [a] where
   after [] _ = []
   after x c  = if Ac.isBefore x c then Cm.sub x (length c) else after (tail x) c
@@ -57,22 +56,32 @@ instance (Eq a) => Splicable [a] (a,a) where
 
 instance (Eq a) => Splicable [a] ([a],[a]) where
   splice ls (a,b)  = before ls a ++ after (after ls a) b
+  
+instance (Eq a) => Splicable [a] (a,a) where
+  splice ls (a,b) = before ls a ++ Cm.fromLast (`before` b) ls
 
+  between a (b,c) = before (after a b) c
+  
+instance (Eq a) => Splicable [a] ([a],[a]) where
+  splice ls (a,b)  = before ls a ++ after (after ls a) b
+
+  between a (b,c)  = before (after a b) c
+  
 -- | Classifies data which can be replaced.
 class Replacable list repls where
-  
+
   -- | Replaces part of list.
   replace  :: list -> repls -> list
-  
+
 instance (Eq a) => Replacable [a] (a,a) where
   replace lst (on,tw) = map (\c -> if c == on then tw else c) lst
-  
+
 instance (Eq a) => Replacable [a] [(a,a)] where
   replace x c = Cm.apply (map (flip replace) c) x
-  
+
 instance (Eq a) => Replacable [a] ([a],[a]) where
   replace [] _ = []
-  replace lst (on,tw) 
+  replace lst (on,tw)
     | take (length on) lst == on = tw ++ replace (Cm.sub lst (length on)) (on,tw)
     | otherwise = head lst : replace (tail lst) (on,tw)
 
@@ -91,4 +100,3 @@ instance (Eq a) => Removable [a] [a] where
   remove [] _       = []
   remove x@(a:b) c  = if take (length c) x == c then remove (restart x) c else a : remove b c
     where restart d = Cm.sub d (length c)
-

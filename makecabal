@@ -17,3 +17,15 @@ fakeroot dpkg -b PACKAGES/DEBIAN/ PACKAGES/DEBIAN
 dpkg-name PACKAGES/DEBIAN/*.deb
 #rm -rf ./dist/
 ./clean
+vim ./cookbook.cabal
+vim ./PACKAGES/DEBIAN/DEBIAN/control
+cabal configure
+cabal haddock
+cabal sdist
+git add --all
+git add -u
+echo -n "git commit message: "
+read COMM
+git commit -m "$COMM"
+git push -u origin master
+cabal upload dist/cook*

@@ -36,4 +36,10 @@ Cookbook.Project.Preprocess.Preprocess: Pp
 
 Cookbook.Project.Quill.Quill: Qu
 
-Cookbook.Project.Bottomless.Bottomless: Bt
+Cookbook.Project.Quill2.Quill2Prelude: Q2p
+
+Cookbook.Project.Quill2.Quill2Parse: Q2r
+
+Cookbook.Project.Quill2.Quill2Api: Q2a
+
+Cookbook.Project.Quill2.Quill2Io: Q2Io

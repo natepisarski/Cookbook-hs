@@ -1,0 +1,12 @@
+list(standard){
+Quill2 is a database management utility, acting as a replacement of Quill, which was itself a replacement of Scribe. It draws inspiration from Bottomless research, using types instead of strings to define tables. Quill2, like Quill, relies on and preaches whitespace independance.;
+}
+
+list(example){
+See this file itself for an example. It's a scribe database. If I showed an example within it, it'd cause problems;
+}
+
+list(usage){
+ database <- fmap Q2Parse.pFile (Q2Io.fromFile "fileName.qu")
+ removeItem("table","item")
+}

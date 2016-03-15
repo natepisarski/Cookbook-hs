@@ -57,3 +57,11 @@ rmlws = (`rmleading` ' ')
 -- | Removes all "symbols" from a string
 rmsymbols :: String -> String
 rmsymbols = (`blacklist` ['\\'..'`'])
+
+-- | Check to see if the string is a non-numeral
+notNumeral :: String -> Bool
+notNumeral x = all (\c -> c `elem` ['A'..'z']) x
+
+-- | Check to see if the string is numeral.
+numeral :: String -> Bool
+numeral x = all (\c -> c `notElem` ['A'..'z']) x

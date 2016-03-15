@@ -15,9 +15,7 @@ import qualified System.IO                         as LIO
 import qualified System.IO.Strict                  as SIO
 import qualified Cookbook.Essential.Common         as Cm
 import qualified Cookbook.Essential.Continuous     as Ct
-import qualified Cookbook.Ingredients.Lists.Modify as Md
-
-import System.Environment       
+ 
 import System.Directory
 
 -- | Return the lines of a file as a list of Strings.

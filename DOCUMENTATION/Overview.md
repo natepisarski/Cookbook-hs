@@ -85,8 +85,16 @@ Cookbook.Projects.Configuration.Configuration (Cf) is a library for reading the 
 ### Preprocess.hs
 Preprocess is a library for reading the preprocess language. Preprocess maps multiple inputs to one output for use in chat bots and text preprocessors. Preprocess supports comments between two dollar signs $$. An odd number of dollar signs can be used for use in mapping either inputs or outputs. Inline comments will be removed as well.
 
-### Quill.hs
-Quill is a library for reading and returning very simple read-only databases. It currently does not selectively parse like Scribe does, and is a non-whitespace significant language, unlike Scribe. Comment support will come at some point in time, as well as a richer API than the tables function.
+### Quill2
 
-### Bottomless.hs
-Cookbook.Project.Bottomless.Bottomles (Bt) is another database language, similar to Quill. Quill may be offocially deprecated by this library. It supports infinitely recursive, whitespace-independant tables with full commenting support. It's similar to Scribe, as recursive tables are what Promises should have been. And it's similar to Quill in EVERY way, except it is more developed than even that.
+     Q2Prelude.hs
+Q2Prelude is the entry-level module for Quill2. It defines the data types that define data, databases, and errors throughout the rest of Quill2.
+
+     Q2Parse.hs
+Q2Parse is the "engine" of Quill2. It is able to turn a string (or a list of them) into a Quill database. The syntax of Quill currently supports Whitespace-inclusive strings, comments, and whitespace-independence.
+
+     Q2Api.hs
+Q2Api is the user-facing part of Quill. It has all the functions necessar to Create, Read, Update, and Delete information from the database, and turn a database back into a Quill-readable string.
+
+     Q2Io.hs
+Q2Io is a helper library for interacting with Quill files. It aids in the reading of and writing to files on the user's system.
