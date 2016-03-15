@@ -35,7 +35,6 @@ clineExtract x = case x of
 
 -- | Helps clineExtract. Determines whether to single or double parse something
 helper :: [String] -> [Cline]
->>>>>>> master
 helper x
   | Ac.count w1 '-' == 1 = singleParse w1 : clineExtract (w2:r)
   | Ac.count w1 '-' == 2 = doubleParse (w1,w2) : clineExtract r

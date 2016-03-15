@@ -50,12 +50,7 @@ class Splicable a b where
   
   -- | Removes everything between the tupple's parameters, including the parameters themselves.
   splice :: a -> b -> a
-
-instance (Eq a) => Splicable [a] (a,a) where
-  splice ls (a,b) = before ls a ++ Cm.fromLast (`before` b) ls
-
-instance (Eq a) => Splicable [a] ([a],[a]) where
-  splice ls (a,b)  = before ls a ++ after (after ls a) b
+  between :: a -> b -> a
   
 instance (Eq a) => Splicable [a] (a,a) where
   splice ls (a,b) = before ls a ++ Cm.fromLast (`before` b) ls
