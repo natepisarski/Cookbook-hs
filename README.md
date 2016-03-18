@@ -67,8 +67,6 @@ Installing
 Cookbook can be installed on hackage with the command "cabal install cookbook". You can also install the package resulting from "runhaskell Setup.hs configure && runhaskell Setup.hs build" with cabal if that's your thing. There is now a Debian package available, but it will literally just run "cabal install cookbook", so get it from the source to stay up to date.
 
 If you do not want to install Cookbook in a global position, place the Cookbook folder in your project's root directory. Because libraries use an unqualified header-level name, they can be called this way through "Cookbook.*" like normal.
-<<<<<<< HEAD
-=======
 
 Links
 -------
