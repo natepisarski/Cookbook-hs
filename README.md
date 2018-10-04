@@ -1,6 +1,6 @@
 Introduction
 --------------
-Cookbook is a general-purpose Haskell library. It is in a way like boost, but without all the things that makes boost bad. 
+Cookbook is a general-purpose Haskell library. It is in a way like boost, but without all the things that makes boost bad (of which there are plenty).
 
 The library builds upon itself to create a complex, but independant cluster of low-dependency code with widely applicable reuse possibilities. To develop Cookbook, I add functions to it whenever I need them in another unrelated project. Because of this, Cookbook slowly grows to an all-encompassing behemoth.
 
