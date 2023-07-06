@@ -1,29 +1,42 @@
 Introduction
 --------------
-Cookbook is a general-purpose Haskell library. It is in a way like boost, but without all the things that makes boost bad (of which there are plenty).
+Cookbook is a general-purpose Haskell library, and seminal pet project of mine. It has no external dependencies, but most modules are "inter-dependent" with another one within Cookbook.
 
-The library builds upon itself to create a complex, but independant cluster of low-dependency code with widely applicable reuse possibilities. To develop Cookbook, I add functions to it whenever I need them in another unrelated project. Because of this, Cookbook slowly grows to an all-encompassing behemoth.
+The library was developed with a "pragmatic philosophy": for 3 years, if I needed some function for a different project, I just added it here. This led to a fragmented but versatile package.
+
 
 Organization
 -------------
-The library is a bit split up. It has four "Wings": Essential, Ingredients, Recipes, and Projects.
+Cookbook has 4 "Wings": Essential, Ingredients, Recipes, and Projects.
 
 ### Essential
-Essential is where the most general functions of the libraries go. It's also where ALL continuations are placed. The continuation is an important concept within Cookbook, and a lot of Code relies on it. It's basically a high level of polymorphism (think: Operator Overloading) supported by GHC's MultiParameter Typeclasses. In layman's terms, (after "tes.t" '.') and (after "tes.t" "s.") will yield the same result.
+Essential is where the most general functions of the libraries go. It's also where ALL **continuations** are placed. A **continuation** in Cookbook can be thought of like a strong method overload / dynamic dispatch. In practice, these are just functions which use GHC's MultiParameter Typeclasses.
+
+For instance, these 2 lines yield the same result:
+
+```haskell
+after "tes.t" '.'
+```
+
+```haskell
+after "test.t" "s."
+```
 
 ### Ingredients
-This is the primary branch of Cookbook, although it is far from being the largest. It is subdivided into different essential types of data in Haskell (Lists, Tupples, Functions), and further subdivided into uses for each.
+The primary wing of cookbook, for general Haskell utilities. It is subdivided into Haskell primitives (`Lists`, `Tuples`, `Functions`), which and further subdivided into specific use-cases.
 
 ### Recipes
-The Recipes branch is for operating on specific types of data, like Strings or Ints, but they are generally applicable. This means that there is no format the data should be required to be in, just the data itself needs to be present.
+The wing that requires specific data types, but is still generally applicable. For instance, you might find a function called `reverseString` in here, but not `parseJson` because JSON is not a "general" technology.
 
 ### Project
-This is the least general of the branches in Cookbook. The Project branch contains experimental (and somewhat dangerous) code that is described in terms of a "standard" (.std file). It expects a certain format, and in a lot of cases will bomb out if it's NOT given that format (think: Database files).
+The least general Wing. The `Project` branch contains experimental code that is described in terms of a "standard" (.std file). It expects a certain format, and in a lot of cases will bomb out if it's NOT given that format (think: Database files).
 
 Overview
 ------------
 
-This is the general overview for all files in Cookbook. For a more in-depth look at each and what it does, take a gander into the DOCUMENTATION branch. To the right of each file is the file's short name.
+This is the "minimap" of Cookbook. Here you can see the overall structure, as well as the **short-name** of each file. For more information, consult the `DOCUMENTATION`directory.
+
+> **Note:** A file's "short-name" is the convention used during an import
 
 * Essential
   * Common.hs     (Cm)
@@ -64,7 +77,11 @@ This is the general overview for all files in Cookbook. For a more in-depth look
     
 Installing
 -------------
-Cookbook can be installed on hackage with the command "cabal install cookbook". You can also install the package resulting from "runhaskell Setup.hs configure && runhaskell Setup.hs build" with cabal if that's your thing. There is now a Debian package available, but it will literally just run "cabal install cookbook", so get it from the source to stay up to date.
+Cookbook is on hackage, so you can use
+
+```shell
+cabal install cookbook
+```
 
 If you do not want to install Cookbook in a global position, place the Cookbook folder in your project's root directory. Because libraries use an unqualified header-level name, they can be called this way through "Cookbook.*" like normal.
 
